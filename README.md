@@ -53,5 +53,11 @@ Try to write all codes in functions that are called from main. You can then
 run this functions interactively and do your debugging online a little easier.
 See esp32/devboard/blinkblue for a simple example
 
+## Tips and tricks
+### Program does not start
+After loading the new program nothing is happening. Yes this is expected. You need
+to reset to start the program. Either push the EN button or use the terminal
+and hit Ctrl-D
+
 ## Da Docs
 https://docs.micropython.org/en/latest/index.html
