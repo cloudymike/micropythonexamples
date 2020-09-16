@@ -1,7 +1,11 @@
-# Very simple example of how to setup network
-# Best run interactively
-# Enter SSID and PASSWORD here or load file once and then
-# run the function with the right parameters
+# Example of how to use upip
+
+# First setup network
+#   see wlan module for wlanconfig file
+# pip install with packages for micropython (prefix micropython-)
+# Check on the package, there are probably limitations
+# profit
+
 
 import network
 import wlanconfig
@@ -19,3 +23,9 @@ def do_connect(essid,password):
 
 if __name__ == "__main__":
     do_connect(wlanconfig.ESSID,wlanconfig.PASSWORD)
+    import upip
+    upip.install('micropython-uuid')
+    # Will reboot at thist point so the following command will not run
+    # But try them manually
+    import uuid
+    uuid.UUID('0123456789ABCDEF')
