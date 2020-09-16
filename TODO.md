@@ -1,11 +1,10 @@
 # Ideas of projects to do
 
 ## WIFI example
-Use this as a base: https://docs.micropython.org/en/latest/wipy/tutorial/wlan.html
 Some simple test or demo. Telnet control of LED?
 
 ## MQTT
-Examples: 
+Examples:
 * https://micropython-iot-hackathon.readthedocs.io/en/latest/mqtt.html
 * https://pycom.io/get-started-subscribing-and-publishing-messages-in-micropython-using-mqtt/
 Create example of pub/sub
