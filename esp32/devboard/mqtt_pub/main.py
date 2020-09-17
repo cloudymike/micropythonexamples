@@ -10,6 +10,7 @@ from mqtt_writer import MQTTWriter
 
 # Do this with an import
 MQTT_HOST='192.168.42.73'
+wlan.do_connect()
 
 # Should this be esp32?
 m = MQTTWriter('esp8266', MQTT_HOST, 1883, 'sensor-data')

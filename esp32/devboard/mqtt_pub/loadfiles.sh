@@ -1,5 +1,8 @@
 #!/bin/bash
-
-ampy --port /dev/ttyUSB0 put ../wlan/wlan.py
-ampy --port /dev/ttyUSB0 put mqtt_writer.py
-ampy --port /dev/ttyUSB0 put main.py
+PORT='/dev/ttyUSB0'
+PUSHCMD="ampy --port $PORT put "
+$PUSHCMD ../wlan/wlan.py
+$PUSHCMD mqtt_writer.py
+$PUSHCMD main.py
+echo "Reset board manually"
+mosquitto_sub -t sensor-data
