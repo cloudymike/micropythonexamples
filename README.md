@@ -37,6 +37,9 @@ Try something simple. This will turn on and off the blue LED
 ```
 This allows you to try your code interactively.
 
+To exit picocom: ctrl-a ctrl-x
+
+
 ## Loading microPython on ESP32
 Short summary of commands. You may want to load the latest version and path may be different
 (try https://micropython.org/download/esp32/)
@@ -61,3 +64,17 @@ and hit Ctrl-D
 
 ## Da Docs
 https://docs.micropython.org/en/latest/index.html
+
+## More ampy commands
+You can use amp to manipulate files and directories> try:
+`sudo ampy --port /dev/ttyUSB0 ls`
+
+Other useful commands:
+  get    Retrieve a file from the board.
+  ls     List contents of a directory on the board.
+  mkdir  Create a directory on the board.
+  put    Put a file or folder and its contents on the...
+  reset  Perform soft reset/reboot of the board.
+  rm     Remove a file from the board.
+  rmdir  Forcefully remove a folder and all its...
+  run    Run a script and print its output.
