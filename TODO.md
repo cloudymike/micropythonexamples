@@ -6,8 +6,8 @@
 * The device should be able to publish current state, as temperature
 * The device should display locally current desired and actual state, as temperature.
 * The device should be able to interface with hardware
- * Temperature sensor
- * Relay control
+    * Temperature sensor
+    * Relay control
 * The device should run internal controller for reaching desired state, as PID or simple thermostat
 
 
