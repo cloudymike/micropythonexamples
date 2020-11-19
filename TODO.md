@@ -1,12 +1,16 @@
 # Ideas of projects to do
 
 ## Current mission
-* To create an aws mqtt device that can publish and subscribe from AWS.
+* To create an aws mqtt device that talk to AWS.
+    * publish
+        * awsiot_pub
+    * subscribe
 * The device should be able to receive commands like desire temperature for temperature control
 * The device should be able to publish current state, as temperature
 * The device should display locally current desired and actual state, as temperature.
 * The device should be able to interface with hardware
     * Temperature sensor
+          * ✓ esp32/devboard/brewtemp
     * Relay control
 * The device should run internal controller for reaching desired state, as PID or simple thermostat
 
