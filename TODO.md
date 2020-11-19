@@ -1,7 +1,15 @@
 # Ideas of projects to do
 
-## WIFI example
-Some simple test or demo. Telnet control of LED?
+## Current mission
+* To create an aws mqtt device that can publish and subscribe from AWS.
+* The device should be able to receive commands like desire temperature for temperature control
+* The device should be able to publish current state, as temperature
+* The device should display locally current desired and actual state, as temperature.
+* The device should be able to interface with hardware
+ * Temperature sensor
+ * Relay control
+* The device should run internal controller for reaching desired state, as PID or simple thermostat
+
 
 ## MQTT
 Examples:
