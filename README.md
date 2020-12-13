@@ -78,3 +78,8 @@ Other useful commands:
   rm     Remove a file from the board.
   rmdir  Forcefully remove a folder and all its...
   run    Run a script and print its output.
+
+  ## Use python as your shell
+  import os
+  os.listdir()
+  

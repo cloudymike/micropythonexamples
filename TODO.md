@@ -1,7 +1,28 @@
 # Ideas of projects to do
 
-## WIFI example
-Some simple test or demo. Telnet control of LED?
+## Current mission
+* To create an aws mqtt device that talk to AWS.
+    * publish
+        * awsiot_pub
+    * subscribe
+* The device should be able to receive commands like desire temperature for temperature control
+* The device should be able to publish current state, as temperature
+* The device should display locally current desired and actual state, as temperature.
+* The device should be able to interface with hardware
+    * Temperature sensor
+        * ✓ esp32/devboard/brewtemp
+    * Relay control
+        * ✓ esp32/devboard/blinkblue
+* The device should run internal controller for reaching desired state, as PID or simple thermostat
+
+## Next steps
+* Remove hardcoding of WLAN and host name from awsiot_pub
+* Subscriber to AWS similar to the line "mosquitto_sub -t sensor-data" in /esp32/devboard/mqtt_pub
+* Subscriber to local mqtt. Simple commands to turn on and off LED. Include script to control
+* Subscriber to aws mqtt. Simple commands to turn on and off LED. Include script to control
+* OLED display to show current value (Hall OK)
+* Change AWS subscription and client ID to less generic. Parameterize
+
 
 ## MQTT
 Examples:

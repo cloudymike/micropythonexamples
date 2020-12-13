@@ -7,13 +7,13 @@ import esp32
 import time
 import wlan
 from mqtt_writer import MQTTWriter
-
+import mqtthost
 # Do this with an import
-MQTT_HOST='192.168.42.73'
+#MQTT_HOST='192.168.62.26'
 wlan.do_connect()
 
 # Should this be esp32?
-m = MQTTWriter('esp8266', MQTT_HOST, 1883, 'sensor-data')
+m = MQTTWriter('esp8266', mqtthost.MQTT_HOST, 1883, 'sensor-data')
 while(1):
     magneto=esp32.hall_sensor()
     print(magneto)

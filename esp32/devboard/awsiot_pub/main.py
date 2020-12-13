@@ -17,8 +17,8 @@ MQTT_TOPIC = "sdk/test/Python"
 
 #Change the following three settings to match your environment
 MQTT_HOST = "a2d09uxsvr5exq-ats.iot.us-west-2.amazonaws.com"
-WIFI_SSID = 'Sonic-6887'
-WIFI_PW = '4pjy93uft3tk'
+#WIFI_SSID = 'Sonic-6887'
+#WIFI_PW = ''
 
 mqtt_client = None
 
