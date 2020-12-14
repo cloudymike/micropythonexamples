@@ -1,6 +1,6 @@
 # AWS IOT publish
 
-Most of the info is in this article: https://awsiot.wordpress.com/2019/01/10/connect-8266-to-aws-mqtt-using-miropython/
+Most of the info is in this article:  https://awsiot.wordpress.com/2019/01/10/connect-8266-to-aws-mqtt-using-miropython/
 
 ## (Not so) Quickstart
 If you do not have a certificate login to your AWS console and use "Get Started" to create a thing and download the "Connection Kit" (Linux/Python). When you unzip it, the certificates will be included. The URL needs to be updated in main.py, this can be found in start.sh
@@ -31,6 +31,12 @@ Got an check on the AWS console at your subscription client and you should see t
 
 A quicker version of reset is to just hit ctrl-D in picocom.
 To exit picocom, ctrl-a ctrl-x
+
+## Policy
+If there is a problem it is always the policy
+Here you can define what client names are allowed to connect. Without that you will get multiple client behave as one and trying to talk over each other. You will also reset both client one one is reset.
+
+You can also define allowed topics so even if you happily change it nothing happens until you put it into allowed topics.
 
 ## TODO
 * Write a python program to subscribe to AWSIOT using pubsub example
