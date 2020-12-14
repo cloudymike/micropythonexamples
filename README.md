@@ -15,6 +15,8 @@ Using ampy to load program.
 * sudo ampy --port /dev/ttyUSB0 put main.py
 * Restart by pressing "en" button
 
+(Note: Some examples include a loadfiles.sh script to do the program loading of multiple files)
+
 Make sure no one else is talking to the device (i.e. no terminal open)
 
 ampy is a download tool from Adafruit. It can be installed with pip:
@@ -82,4 +84,3 @@ Other useful commands:
   ## Use python as your shell
   import os
   os.listdir()
-  
