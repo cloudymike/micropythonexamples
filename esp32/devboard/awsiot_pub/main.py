@@ -26,11 +26,13 @@ mqtt_client = None
 class MQTTWriter:
     __slots__ = ('host', 'port', 'topic', 'client')
 
-    def __init__(self, client_id, host, port, topic):
+    def __init__(self, client_id, host, port, topic, key_file, cert_file):
         self.client_id = client_id
         self.host = host
         self.port = port
         self.topic = topic
+        self.key_file = key_file
+        self.cert_file = cert_file
 
     def pub_msg(self, msg):
         global mqtt_client
@@ -45,11 +47,11 @@ class MQTTWriter:
         global mqtt_client
 
         try:
-            with open(KEY_FILE, "r") as f:
+            with open(self.key_file, "r") as f:
                 key = f.read()
             print("Got Key")
 
-            with open(CERT_FILE, "r") as f:
+            with open(self.cert_file, "r") as f:
                 cert = f.read()
             print("Got Cert")
 
@@ -96,7 +98,7 @@ class MQTTWriter:
 
 if __name__ == "__main__":  # pragma: no cover
     wlan.do_connect()
-    m = MQTTWriter(MQTT_CLIENT_ID, MQTT_HOST, MQTT_PORT, MQTT_TOPIC)
+    m = MQTTWriter(MQTT_CLIENT_ID, MQTT_HOST, MQTT_PORT, MQTT_TOPIC, KEY_FILE, CERT_FILE)
     m.connect_mqtt()
     while(1):
         magneto=esp32.hall_sensor()
