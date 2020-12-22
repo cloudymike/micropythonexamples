@@ -18,8 +18,6 @@ MQTT_TOPIC = "upypub"
 
 #Change the following three settings to match your environment
 MQTT_HOST = "a2d09uxsvr5exq-ats.iot.us-west-2.amazonaws.com"
-#WIFI_SSID = 'Sonic-6887'
-#WIFI_PW = ''
 
 mqtt_client = None
 
@@ -33,6 +31,7 @@ class MQTTWriter:
         self.topic = topic
         self.key_file = key_file
         self.cert_file = cert_file
+        self.connect_mqtt()
 
     def pub_msg(self, msg):
         global mqtt_client
@@ -99,7 +98,6 @@ class MQTTWriter:
 if __name__ == "__main__":  # pragma: no cover
     wlan.do_connect()
     m = MQTTWriter(MQTT_CLIENT_ID, MQTT_HOST, MQTT_PORT, MQTT_TOPIC, KEY_FILE, CERT_FILE)
-    m.connect_mqtt()
     while(1):
         magneto=esp32.hall_sensor()
         print(magneto)
