@@ -23,62 +23,74 @@ MQTT_HOST = "a2d09uxsvr5exq-ats.iot.us-west-2.amazonaws.com"
 
 mqtt_client = None
 
-def pub_msg(msg):
-    global mqtt_client
-    try:
-        mqtt_client.publish(MQTT_TOPIC, msg, qos=0)
-        print("Sent: " + msg)
-    except Exception as e:
-        print("Exception publish: " + str(e))
-        raise
+class MQTTWriter:
+    __slots__ = ('host', 'port', 'topic', 'client')
 
-def connect_mqtt():
-    global mqtt_client
+    def __init__(self, name, host, port, topic):
+        self.topic = topic
 
-    try:
-        with open(KEY_FILE, "r") as f:
-            key = f.read()
-        print("Got Key")
+    def pub_msg(self, msg):
+        global mqtt_client
+        try:
+            mqtt_client.publish(MQTT_TOPIC, msg, qos=0)
+            print("Sent: " + msg)
+        except Exception as e:
+            print("Exception publish: " + str(e))
+            raise
 
-        with open(CERT_FILE, "r") as f:
-            cert = f.read()
-        print("Got Cert")
+    def connect_mqtt(self):
+        global mqtt_client
 
-        mqtt_client = MQTTClient(client_id=MQTT_CLIENT_ID, server=MQTT_HOST, port=MQTT_PORT, keepalive=5000, ssl=True, ssl_params={"cert":cert, "key":key, "server_side":False})
-        mqtt_client.connect()
-        print('MQTT Connected')
+        try:
+            with open(KEY_FILE, "r") as f:
+                key = f.read()
+            print("Got Key")
+
+            with open(CERT_FILE, "r") as f:
+                cert = f.read()
+            print("Got Cert")
+
+            mqtt_client = MQTTClient(client_id=MQTT_CLIENT_ID, server=MQTT_HOST, port=MQTT_PORT, keepalive=5000, ssl=True, ssl_params={"cert":cert, "key":key, "server_side":False})
+            mqtt_client.connect()
+            print('MQTT Connected')
+
+        except Exception as e:
+            print('Cannot connect MQTT: ' + str(e))
+            raise
+
+    def disconnect(self):
+        global mqtt_client
+        mqtt_client.disconnect()
+
+    def oldmain(self):
+        #start execution
+        try:
+            print("Connecting WIFI")
+            #connect_wifi(WIFI_SSID, WIFI_PW)
+            wlan.do_connect()
+            print("Connecting MQTT")
+            connect_mqtt()
+
+            magneto=esp32.hall_sensor()
+            pub_msg("{\"message\":" + str(magneto) + "}")
+            #pub_msg(messageJson)
+
+            disconnect()
+
+            #myAWSIoTMQTTClient.publish(MQTT_TOPIC, messageJson, 1)
+            print("OK")
+        except Exception as e:
+            print(str(e))
 
 
-    except Exception as e:
-        print('Cannot connect MQTT: ' + str(e))
-        raise
 
-def disconnect():
-    global mqtt_client
-    mqtt_client.disconnect()
 
-#start execution
-try:
-    print("Connecting WIFI")
-    #connect_wifi(WIFI_SSID, WIFI_PW)
+if __name__ == "__main__":  # pragma: no cover
     wlan.do_connect()
-    print("Connecting MQTT")
-    connect_mqtt()
-
-    magneto=esp32.hall_sensor()
-
-    print("Publishing")
-    message = {}
-    message['message'] = "Hi from esp32"
-    message['sequence'] = 0
-    messageJson = json.dumps(message)
-
-    pub_msg("{\"message\":" + str(magneto) + "}")
-    #pub_msg(messageJson)
-
-    disconnect()
-
-    #myAWSIoTMQTTClient.publish(MQTT_TOPIC, messageJson, 1)
-    print("OK")
-except Exception as e:
-    print(str(e))
+    m = MQTTWriter(MQTT_CLIENT_ID, MQTT_HOST, MQTT_PORT, MQTT_TOPIC)
+    m.connect_mqtt()
+    while(1):
+        magneto=esp32.hall_sensor()
+        print(magneto)
+        m.pub_msg("{\"message\":" + str(magneto) + "}")
+        time.sleep_ms(750)
