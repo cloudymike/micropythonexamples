@@ -1,8 +1,4 @@
 from umqtt.robust import MQTTClient
-import time
-import esp32
-import wlan
-import json
 
 
 class MQTTWriterAWS:
