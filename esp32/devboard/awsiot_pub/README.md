@@ -38,5 +38,5 @@ Here you can define what client names are allowed to connect. Without that you w
 
 You can also define allowed topics so even if you happily change it nothing happens until you put it into allowed topics.
 
-## TODO
-* Use arguments to include the URL instead of hardcoded in python
+## Configuration
+All variables comes in a configuration file. Create this before loading device, see loadfiles.sh
