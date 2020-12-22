@@ -19,7 +19,6 @@ MQTT_TOPIC = "upypub"
 #Change the following three settings to match your environment
 MQTT_HOST = "a2d09uxsvr5exq-ats.iot.us-west-2.amazonaws.com"
 
-mqtt_client = None
 
 class MQTTWriter:
     __slots__ = ('host', 'port', 'topic', 'client')
@@ -31,19 +30,20 @@ class MQTTWriter:
         self.topic = topic
         self.key_file = key_file
         self.cert_file = cert_file
+
+        self.mqtt_client = None
+
         self.connect_mqtt()
 
     def pub_msg(self, msg):
-        global mqtt_client
         try:
-            mqtt_client.publish(self.topic, msg, qos=0)
+            self.mqtt_client.publish(self.topic, msg, qos=0)
             print("Sent: " + msg)
         except Exception as e:
             print("Exception publish: " + str(e))
             raise
 
     def connect_mqtt(self):
-        global mqtt_client
 
         try:
             with open(self.key_file, "r") as f:
@@ -54,14 +54,14 @@ class MQTTWriter:
                 cert = f.read()
             print("Got Cert")
 
-            mqtt_client = MQTTClient(
+            self.mqtt_client = MQTTClient(
                 client_id=self.client_id,
                 server=self.host,
                 port=self.port,
                 keepalive=5000,
                 ssl=True,
                 ssl_params={"cert":cert, "key":key, "server_side":False})
-            mqtt_client.connect()
+            self.mqtt_client.connect()
             print('MQTT Connected')
 
         except Exception as e:
@@ -69,8 +69,7 @@ class MQTTWriter:
             raise
 
     def disconnect(self):
-        global mqtt_client
-        mqtt_client.disconnect()
+        self.mqtt_client.disconnect()
 
     def oldmain(self):
         #start execution
