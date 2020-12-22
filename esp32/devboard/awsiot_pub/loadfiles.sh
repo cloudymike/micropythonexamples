@@ -9,6 +9,7 @@ $PUSHCMD ~/secrets/upytest/wlanconfig.py
 
 echo "Loading programs"
 $PUSHCMD ../wlan/wlan.py
+$PUSHCMD mqtt_writer_aws.py
 $PUSHCMD main.py
 echo "Reset board manually"
 echo "Starting test monitor"
