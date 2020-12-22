@@ -26,13 +26,16 @@ mqtt_client = None
 class MQTTWriter:
     __slots__ = ('host', 'port', 'topic', 'client')
 
-    def __init__(self, name, host, port, topic):
+    def __init__(self, client_id, host, port, topic):
+        self.client_id = client_id
+        self.host = host
+        self.port = port
         self.topic = topic
 
     def pub_msg(self, msg):
         global mqtt_client
         try:
-            mqtt_client.publish(MQTT_TOPIC, msg, qos=0)
+            mqtt_client.publish(self.topic, msg, qos=0)
             print("Sent: " + msg)
         except Exception as e:
             print("Exception publish: " + str(e))
@@ -50,7 +53,13 @@ class MQTTWriter:
                 cert = f.read()
             print("Got Cert")
 
-            mqtt_client = MQTTClient(client_id=MQTT_CLIENT_ID, server=MQTT_HOST, port=MQTT_PORT, keepalive=5000, ssl=True, ssl_params={"cert":cert, "key":key, "server_side":False})
+            mqtt_client = MQTTClient(
+                client_id=self.client_id,
+                server=self.host,
+                port=self.port,
+                keepalive=5000,
+                ssl=True,
+                ssl_params={"cert":cert, "key":key, "server_side":False})
             mqtt_client.connect()
             print('MQTT Connected')
 
