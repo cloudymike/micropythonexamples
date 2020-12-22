@@ -71,28 +71,6 @@ class MQTTWriter:
     def disconnect(self):
         self.mqtt_client.disconnect()
 
-    def oldmain(self):
-        #start execution
-        try:
-            print("Connecting WIFI")
-            #connect_wifi(WIFI_SSID, WIFI_PW)
-            wlan.do_connect()
-            print("Connecting MQTT")
-            connect_mqtt()
-
-            magneto=esp32.hall_sensor()
-            pub_msg("{\"message\":" + str(magneto) + "}")
-            #pub_msg(messageJson)
-
-            disconnect()
-
-            #myAWSIoTMQTTClient.publish(MQTT_TOPIC, messageJson, 1)
-            print("OK")
-        except Exception as e:
-            print(str(e))
-
-
-
 
 if __name__ == "__main__":  # pragma: no cover
     wlan.do_connect()
