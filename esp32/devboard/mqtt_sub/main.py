@@ -1,6 +1,4 @@
-# Measures magnetic filed with interal hall sensor
-# Use a magnet right over the chip, try to turn it if the number does not change
-# Be careful, you do not want it to find the pins and short them.
+# Turns on and off blue LED based on command
 
 import machine
 import esp32
@@ -13,7 +11,7 @@ import mqtthost
 wlan.do_connect()
 
 # Should this be esp32?
-m = MQTTReader('esp8266', mqtthost.MQTT_HOST, 1883, 'sensor-data')
+m = MQTTReader('esp8266', mqtthost.MQTT_HOST, 1883, 'BlueLED')
 
 while 1:
     m.wait_msg()
