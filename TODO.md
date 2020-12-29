@@ -3,8 +3,11 @@
 ## Current mission
 * To create an aws mqtt device that talk to AWS.
     * ✓ publish
+        * ✓ mqtt_pub
         * ✓ awsiot_pub
     * subscribe
+        * ✓ mqtt_sub
+        * awsiot_sub
 * The device should be able to receive commands like desire temperature for temperature control
 * ✓ The device should be able to publish current state, as temperature
 * The device should display locally current desired and actual state, as temperature.
@@ -16,7 +19,6 @@
 * The device should run internal controller for reaching desired state, as PID or simple thermostat
 
 ## Next steps
-* Subscriber to local mqtt. Simple commands to turn on and off LED. Include script to control
 * Subscriber to aws mqtt. Simple commands to turn on and off LED. Include script to control
 * OLED display to show current value (Hall OK)
 * Change AWS subscription and client ID to less generic. Parameterize
