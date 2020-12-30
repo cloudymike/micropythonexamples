@@ -16,6 +16,50 @@ resource "aws_iot_thing_principal_attachment" "upyex_principal_att" {
   thing     = aws_iot_thing.upyex_iot_thing.name
 }
 
+# A policy for the iot thing for Micro Python Examples
+resource "aws_iot_policy" "upyex_policy" {
+  name = "upyex"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect",
+        "iot:Subscribe"
+      ],
+      "Resource": "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish"
+      ],
+      "Resource": [
+      "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:topic/upypub",
+      "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:topic/upysub"
+        ]
+    }
+  ]
+}
+EOF
+}
+# Attach policy generated above to the aws iot thing(s)
+resource "aws_iot_policy_attachment" "upyex_policy_att" {
+  policy = aws_iot_policy.upyex_policy.name
+  target = aws_iot_certificate.upyex_cert.arn
+}
+
+
+# Variables
+###############################################################
+
+data "aws_region" "current" {}
+
+data "aws_caller_identity" "current" {}
+
 
 # Output created information for use by awsiot MicroPython Code
 ###############################################################
@@ -42,8 +86,7 @@ data "aws_iot_endpoint" "endpoint" {
     endpoint_type = "iot:Data-ATS"
 }
 
-# Output arn of iot thing(s) 
+# Output arn of iot thing(s)
 output "iot_endpoint" {
   value = data.aws_iot_endpoint.endpoint.endpoint_address
 }
-
