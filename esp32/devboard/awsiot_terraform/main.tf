@@ -27,20 +27,32 @@ resource "aws_iot_policy" "upyex_policy" {
     {
       "Effect": "Allow",
       "Action": [
-        "iot:Connect",
-        "iot:Subscribe"
+        "iot:Connect"
       ],
-      "Resource": "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"
+      "Resource": [
+        "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"
+      ]
     },
     {
       "Effect": "Allow",
       "Action": [
-        "iot:Publish"
+        "iot:Subscribe"
       ],
       "Resource": [
-      "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:topic/upypub",
-      "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:topic/upysub"
-        ]
+        "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:topicfilter/upypub",
+        "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:topicfilter/upysub"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Receive"
+      ],
+      "Resource": [
+        "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:topic/upypub",
+        "arn:aws:iot:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:topic/upysub"
+      ]
     }
   ]
 }
