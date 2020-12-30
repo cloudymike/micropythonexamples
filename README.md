@@ -53,6 +53,10 @@ wget https://micropython.org/resources/firmware/esp32-20190125-v1.10.bin
 sudo esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 ../esp32-20190125-v1.10.bin
 ```
 ## Loading packages (pip install)
+Run the module upip to load packages that are required in this collection of example. To install individual packages
+follow the instruction below.
+
+
 To load micropython packages, make sure the network is working first. Use the WLAN example to set this up.
 
 Then use upip to install the required package
@@ -103,6 +107,6 @@ Other useful commands:
   rmdir  Forcefully remove a folder and all its...
   run    Run a script and print its output.
 
-  ## Use python as your shell
+## Use python as your shell
   import os
   os.listdir()
