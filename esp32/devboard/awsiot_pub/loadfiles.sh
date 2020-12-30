@@ -3,15 +3,10 @@
 #Define some variables, change if needed
 
 # These are your certificates, update with the path were you put it (and NOT in the repo)
-#CERT_FILE_PATH=~/secrets/upytest/upytest.cert.pem
-#ROOT_CERT_FILE_PATH=~/secrets/upytest/awsrootca1.crt
-#KEY_FILE_PATH=~/secrets/upytest/upytest.private.key
-#WLAN_CONFIG_PATH=~/secrets/upytest/wlanconfig.py
-
-
 CERT_FILE_PATH=../awsiot_terraform/certs/upyex_cert.pem.crt
-ROOT_CERT_FILE_PATH=~/secrets/upytest/awsrootca1.crt
+ROOT_CERT_FILE_PATH=../awsiot_terraform/certs/AmazonRootCA1.pem
 KEY_FILE_PATH=../awsiot_terraform/certs/upyex_cert.private.key
+
 WLAN_CONFIG_PATH=~/secrets/upytest/wlanconfig.py
 
 # Server and topic
