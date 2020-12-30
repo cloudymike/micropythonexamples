@@ -47,10 +47,9 @@ Short summary of commands. You may want to load the latest version and path may 
 (try https://micropython.org/download/esp32/)
 ```
 git clone https://github.com/espressif/esptool.git
-cd esptool
-sudo esptool --port /dev/ttyUSB0 erase_flash
-wget https://micropython.org/resources/firmware/esp32-20190125-v1.10.bin
-sudo esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 ../esp32-20190125-v1.10.bin
+sudo esptool/esptool.py --port /dev/ttyUSB0 erase_flash
+wget https://micropython.org/resources/firmware/esp32-idf3-20190125-v1.10.bin
+sudo esptool/esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 ./esp32-idf3-20190125-v1.10.bin
 ```
 ## Loading packages (pip install)
 To load micropython packages, make sure the network is working first. Use the WLAN example to set this up.
