@@ -40,3 +40,8 @@ You can also define allowed topics so even if you happily change it nothing happ
 
 ## Configuration
 All variables comes in a configuration file. Create this before loading device, see loadfiles.sh
+
+## Libraries
+You need to load umqtt.simple/robust/robust2
+upip.install("micropython-umqtt.simple")
+Network needs to be running, see top level README file for more info
