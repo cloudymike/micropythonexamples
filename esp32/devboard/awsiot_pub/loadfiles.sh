@@ -3,13 +3,16 @@
 #Define some variables, change if needed
 
 # These are your certificates, update with the path were you put it (and NOT in the repo)
-CERT_FILE_PATH=~/secrets/upytest/upytest.cert.pem
-ROOT_CERT_FILE_PATH=~/secrets/upytest/awsrootca1.crt
-KEY_FILE_PATH=~/secrets/upytest/upytest.private.key
+CERT_FILE_PATH=../awsiot_terraform/certs/upyex_cert.pem.crt
+ROOT_CERT_FILE_PATH=../awsiot_terraform/certs/AmazonRootCA1.pem
+KEY_FILE_PATH=../awsiot_terraform/certs/upyex_cert.private.key
+
 WLAN_CONFIG_PATH=~/secrets/upytest/wlanconfig.py
 
 # Server and topic
-MQTT_HOST="a2d09uxsvr5exq-ats.iot.us-west-2.amazonaws.com"
+#MQTT_HOST="a2d09uxsvr5exq-ats.iot.us-west-2.amazonaws.com"
+MQTT_HOST=$(cut -f 3 -d ' ' < ../awsiot_terraform/endpoint.py)
+
 MQTT_TOPIC="upypub"
 
 # Filename for cert and key on the esp32 device
@@ -37,7 +40,7 @@ MQTT_PORT = 8883
 #if you change the topic make sure update AWS policy
 MQTT_TOPIC = "${MQTT_TOPIC}"
 
-#Change the following three settings to match your environment
+#Change the following to match your environment
 MQTT_HOST = "${MQTT_HOST}"
 EOF
 
@@ -45,7 +48,8 @@ echo "Loading programs"
 $PUSHCMD ../wlan/wlan.py
 $PUSHCMD mqtt_writer_aws.py
 $PUSHCMD awsiotconfig.py
-$PUSHCMD main.py./pubsubwrap.sh
+$PUSHCMD main.py
+
 echo "Reset board manually"
 echo "Starting test monitor"
 

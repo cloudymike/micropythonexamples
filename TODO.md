@@ -22,6 +22,7 @@
 * Subscriber to aws mqtt. Simple commands to turn on and off LED. Include script to control
 * OLED display to show current value (Hall OK)
 * Change AWS subscription and client ID to less generic. Parameterize
+* Add loadfiles to wlan example
 
 
 ## MQTT
