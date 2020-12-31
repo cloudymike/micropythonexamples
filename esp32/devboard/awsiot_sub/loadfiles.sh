@@ -35,6 +35,7 @@ KEY_FILE = "${KEY_FILE}"
 
 #if you change the ClientId make sure update AWS policy
 MQTT_CLIENT_ID = "esp32"
+
 MQTT_PORT = "${MQTT_PORT}"
 
 #if you change the topic make sure update AWS policy
@@ -51,8 +52,6 @@ $PUSHCMD awsiotconfig.py
 $PUSHCMD main.py
 
 echo "Reset board manually"
-echo "Starting test monitor"
-
 
 while [ 1 ];
 do
