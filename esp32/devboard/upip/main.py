@@ -25,7 +25,4 @@ if __name__ == "__main__":
     do_connect(wlanconfig.ESSID,wlanconfig.PASSWORD)
     import upip
     upip.install('micropython-uuid')
-    # Will reboot at thist point so the following command will not run
-    # But try them manually
-    import uuid
-    uuid.UUID('0123456789ABCDEF')
+    upip.install('micropython-umqtt.simple')
