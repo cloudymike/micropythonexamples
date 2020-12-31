@@ -6,13 +6,11 @@ import json
 ledPin=2
 blueLed = machine.Pin(ledPin, machine.Pin.OUT)
 
-def sub_cb(topic, rawmsg):
-    print((topic, rawmsg))
-    msgjson = json.loads(rawmsg)
-    msg = msgjson['message']
-    if msg == "on":
+def sub_cb(topic, msg):
+    print((topic, msg))
+    if msg == b'on':
         blueLed.on()
-    if msg == "off":
+    if msg == b'off':
         blueLed.off()
 
 

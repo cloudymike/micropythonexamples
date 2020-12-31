@@ -12,7 +12,7 @@ WLAN_CONFIG_PATH=~/secrets/upytest/wlanconfig.py
 # Server and topic
 #MQTT_HOST="a2d09uxsvr5exq-ats.iot.us-west-2.amazonaws.com"
 MQTT_HOST=$(cut -f 3 -d ' ' < ../awsiot_terraform/endpoint.py)
-
+MQTT_PORT=8883
 MQTT_TOPIC="upypub"
 
 # Filename for cert and key on the esp32 device
@@ -35,7 +35,7 @@ KEY_FILE = "${KEY_FILE}"
 
 #if you change the ClientId make sure update AWS policy
 MQTT_CLIENT_ID = "esp32"
-MQTT_PORT = 8883
+MQTT_PORT = "${MQTT_PORT}"
 
 #if you change the topic make sure update AWS policy
 MQTT_TOPIC = "${MQTT_TOPIC}"
@@ -53,26 +53,30 @@ $PUSHCMD main.py
 echo "Reset board manually"
 echo "Starting test monitor"
 
+
 while [ 1 ];
 do
-  python ./basic_pubsub.py \
-    -e "${MQTT_HOST}" \
-    -c ${CERT_FILE_PATH} \
-    -r ${ROOT_CERT_FILE_PATH} \
-    -k ${KEY_FILE_PATH} \
-    -t "${MQTT_TOPIC}" \
-    -id "testmonitor" \
-    -m "publish" \
-    -M "on"
+  mosquitto_pub \
+  -h "${MQTT_HOST}" \
+  --cert ${CERT_FILE_PATH} \
+  --cafile ${ROOT_CERT_FILE_PATH} \
+  --key ${KEY_FILE_PATH} \
+  -t "${MQTT_TOPIC}" \
+  -i "testmonitor" \
+  -p ${MQTT_PORT} \
+  -m "on"
+
   sleep 1
-  python ./basic_pubsub.py \
-    -e "${MQTT_HOST}" \
-    -c ${CERT_FILE_PATH} \
-    -r ${ROOT_CERT_FILE_PATH} \
-    -k ${KEY_FILE_PATH} \
-    -t "${MQTT_TOPIC}" \
-    -id "testmonitor" \
-    -m "publish" \
-    -M "off"
+
+  mosquitto_pub \
+  -h "${MQTT_HOST}" \
+  --cert ${CERT_FILE_PATH} \
+  --cafile ${ROOT_CERT_FILE_PATH} \
+  --key ${KEY_FILE_PATH} \
+  -t "${MQTT_TOPIC}" \
+  -i "testmonitor" \
+  -p ${MQTT_PORT} \
+  -m "off"
+
   sleep 1
 done
