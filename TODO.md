@@ -17,14 +17,15 @@
     * ✓ Relay control
         * ✓ esp32/devboard/blinkblue
 * The device should run internal controller for reaching desired state, as PID or simple thermostat
-* Setup WLAN w/o hardcoding: https://randomnerdtutorials.com/micropython-wi-fi-manager-esp32-esp8266/
+* Streamline, make it easy to setup wlan, create Over The Air software update
 
 ## Next steps
 * Subscriber to aws mqtt. Simple commands to turn on and off LED. Include script to control
 * OLED display to show current value (Hall OK)
 * Change AWS subscription and client ID to less generic. Parameterize
 * Add loadfiles to wlan example
-
+* Setup WLAN w/o hardcoding: https://randomnerdtutorials.com/micropython-wi-fi-manager-esp32-esp8266/
+* Wrap the LED in a class so it an be used in mqtt_subscribe for any board
 
 ## MQTT
 Examples:
