@@ -3,9 +3,7 @@
 Most of the info is in this article:  https://awsiot.wordpress.com/2019/01/10/connect-8266-to-aws-mqtt-using-miropython/
 
 ## (Not so) Quickstart
-If you do not have a certificate login to your AWS console and use "Get Started" to create a thing and download the "Connection Kit" (Linux/Python). When you unzip it, the certificates will be included. The URL needs to be updated in main.py, this can be found in start.sh
-
-Put the key and certificate into a safe place and update "loadfiles.sh" to use these files.
+Run ../awsiot_terraform to create a AWS iot thing. This will create certificates, policy endpoints etc as required
 
 Create a file "wlanconfig.py" with wireless lan credentials, see wlan directory for more details. Update loadfiles.sh to load these files.
 
@@ -39,9 +37,7 @@ Here you can define what client names are allowed to connect. Without that you w
 You can also define allowed topics so even if you happily change it nothing happens until you put it into allowed topics.
 
 ## Configuration
-All variables comes in a configuration file. Create this before loading device, see loadfiles.sh
+All variables comes in a configuration file. This is created by loadfiles.sh
 
 ## Libraries
-You need to load umqtt.simple/robust/robust2
-upip.install("micropython-umqtt.simple")
-Network needs to be running, see top level README file for more info
+You need to load umqtt.simple ("micropython-umqtt.simple"). Run example upip, and it will load this library, among other things.
