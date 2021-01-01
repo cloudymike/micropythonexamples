@@ -63,28 +63,15 @@ sudo esptool/esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 .
 Run the module upip to load packages that are required in this collection of example. To install individual packages
 follow the instruction below.
 
-
-To load micropython packages, make sure the network is working first. Use the WLAN example to set this up.
+To load micropython packages manually, make sure the network is working first. Use the WLAN example to set this up.
 
 Then use upip to install the required package
+```
 import upip
 upip.install("micropython-usomepackagename")
-
+```
 Note that all micropython packages follows the name structure above.
 
-Complete output:
->>>
-MPY: soft reboot
-connecting to network...
-network config: ('192.168.62.71', '255.255.255.0', '192.168.62.1', '192.168.62.1')
-MicroPython v1.11-187-g00e7fe8 on 2019-08-01; ESP32 module with ESP32
-Type "help()" for more information.
->>> import upip
->>> upip.install("micropython-umqtt.robust2")
-Installing to: /lib/
-Warning: micropython.org SSL certificate is not validated
-Installing micropython-umqtt.robust2 2.1.0 from https://files.pythonhosted.org/packages/2a/f1/5f50372df69322fc82d35d9248b37532ffc0046aa9758095c8297ea5e7ca/micropython-umqtt.robust2-2.1.0.tar.gz
->>>
 
 ## Styleguides
 Try to write all codes in classes or functions that are called from main. You can then
@@ -95,7 +82,7 @@ See esp32/devboard/LED for a simple example
 ### Program does not start
 After loading the new program nothing is happening. Yes this is expected. You need
 to reset to start the program. Either push the EN button or use the terminal
-and hit Ctrl-D
+and hit Ctrl-D, or power cycle, or run the reset.py in reset
 
 ## Da Docs
 https://docs.micropython.org/en/latest/index.html
@@ -105,15 +92,17 @@ You can use amp to manipulate files and directories> try:
 `sudo ampy --port /dev/ttyUSB0 ls`
 
 Other useful commands:
-  get    Retrieve a file from the board.
-  ls     List contents of a directory on the board.
-  mkdir  Create a directory on the board.
-  put    Put a file or folder and its contents on the...
-  reset  Perform soft reset/reboot of the board.
-  rm     Remove a file from the board.
-  rmdir  Forcefully remove a folder and all its...
-  run    Run a script and print its output.
+* get    Retrieve a file from the board.
+* ls     List contents of a directory on the board.
+* mkdir  Create a directory on the board.
+* put    Put a file or folder and its contents on the...
+* reset  Perform soft reset/reboot of the board.
+* rm     Remove a file from the board.
+* rmdir  Forcefully remove a folder and all its...
+* run    Run a script and print its output.
 
 ## Use python as your shell
+```
   import os
   os.listdir()
+```
