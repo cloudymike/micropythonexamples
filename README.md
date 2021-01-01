@@ -11,11 +11,19 @@ on pin out diagrams, software versions and more.
 
 ## Quick start
 Using ampy to load program.
+```
+sudo ampy --port /dev/ttyUSB0 put main.py
+```
+* Restart
+  * Press "en" button
+  * Powercycle (unplug and reconnect usb cable)
+  * Use terminal with picocom and ctrl-D (see below)
+  * Run reset commands (Yes, this may throw errors, just ignore):
+    ```
+    sudo ampy --port /dev/ttyUSB0 run <devicename>/reset/reset.py
+    ```
 
-* sudo ampy --port /dev/ttyUSB0 put main.py
-* Restart by pressing "en" button
-
-(Note: Some examples include a loadfiles.sh script to do the program loading of multiple files)
+(Note: Some examples include a RUN.sh script to do the program loading and resetting of device)
 
 Make sure no one else is talking to the device (i.e. no terminal open)
 
@@ -79,9 +87,9 @@ Installing micropython-umqtt.robust2 2.1.0 from https://files.pythonhosted.org/p
 >>>
 
 ## Styleguides
-Try to write all codes in functions that are called from main. You can then
-run this functions interactively and do your debugging online a little easier.
-See esp32/devboard/blinkblue for a simple example
+Try to write all codes in classes or functions that are called from main. You can then
+run this functions or class methods interactively and do your debugging online a little easier.
+See esp32/devboard/LED for a simple example
 
 ## Tips and tricks
 ### Program does not start

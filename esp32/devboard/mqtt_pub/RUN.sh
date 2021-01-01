@@ -10,13 +10,11 @@ echo "MQTT_HOST='$(hostname -I | awk '{print $1}')'" >mqtthost.py
 $PUSHCMD mqtthost.py
 
 $PUSHCMD ../wlan/wlan.py
-$PUSHCMD mqtt_reader.py
+$PUSHCMD mqtt_writer.py
 $PUSHCMD main.py
-echo "Reset board manually. To exit testloop, ctrl-c in this windown"
-while [ 1 ];
-do
-  mosquitto_pub -t BlueLED -q 0 -m on
-  sleep 1
-  mosquitto_pub -t BlueLED -q 0 -m off
-  sleep 1
-done
+
+echo "Resetting board"
+sudo timeout 2  ampy --port /dev/ttyUSB0 run ../reset/reset.py
+
+echo "Message published from hall sensor on device"
+mosquitto_sub -t sensor-data

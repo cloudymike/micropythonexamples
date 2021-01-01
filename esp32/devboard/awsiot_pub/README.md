@@ -12,22 +12,16 @@ Got to aws console,
 AWS IoT -> Manage -> Things ->"NameOfYourDevice" -> Activity ->Mqtt Client ->
 Subscribe to a Topic -> "sdk/test/Python"
 
-In a terminal:
+The Run.sh script sets everything up and should be enough to run this example.
+
+IF you like to see what device is doing in another terminal, while RUN.sh is running:
 ```
-./loadfiles.sh
 sudo picocom /dev/ttyUSB0 -b115200
-import machine
-machine.reset()
 ```
 The last lines in the output should be something like:
 ```
-Sent: {"upytest":33}
-OK
+Sent: {"message":42}
 ```
-Got an check on the AWS console at your subscription client and you should see the same message if all is OK.
-
-
-A quicker version of reset is to just hit ctrl-D in picocom.
 To exit picocom, ctrl-a ctrl-x
 
 ## Policy
@@ -37,7 +31,7 @@ Here you can define what client names are allowed to connect. Without that you w
 You can also define allowed topics so even if you happily change it nothing happens until you put it into allowed topics.
 
 ## Configuration
-All variables comes in a configuration file. This is created by loadfiles.sh
+All variables comes in a configuration file. This is created by RUN.sh
 
 ## Libraries
 You need to load umqtt.simple ("micropython-umqtt.simple"). Run example upip, and it will load this library, among other things.

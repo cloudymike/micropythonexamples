@@ -1,17 +1,14 @@
 import machine
 from umqtt.simple import MQTTClient
 import json
-
-
-ledPin=2
-blueLed = machine.Pin(ledPin, machine.Pin.OUT)
+import LED
 
 def sub_cb(topic, msg):
     print((topic, msg))
     if msg == b'on':
-        blueLed.on()
+        LED.LED.on()
     if msg == b'off':
-        blueLed.off()
+        LED.LED.off()
 
 
 class MQTTReaderAWS:
