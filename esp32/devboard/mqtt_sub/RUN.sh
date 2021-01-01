@@ -10,7 +10,19 @@ echo "MQTT_HOST='$(hostname -I | awk '{print $1}')'" >mqtthost.py
 $PUSHCMD mqtthost.py
 
 $PUSHCMD ../wlan/wlan.py
-$PUSHCMD mqtt_writer.py
+$PUSHCMD ../LED/LED.py
+$PUSHCMD mqtt_reader.py
 $PUSHCMD main.py
-echo "Reset board manually and count to 5, slowly..."
-mosquitto_sub -t sensor-data
+
+echo "Resetting board"
+sudo timeout 2  ampy --port /dev/ttyUSB0 run ../reset/reset.py
+
+echo "Publish message to turn LED on and off"
+echo "Loops forever so ctrl-C when done"
+while [ 1 ];
+do
+  mosquitto_pub -t BlueLED -q 0 -m on
+  sleep 1
+  mosquitto_pub -t BlueLED -q 0 -m off
+  sleep 1
+done

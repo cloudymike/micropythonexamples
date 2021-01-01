@@ -47,19 +47,39 @@ EOF
 
 echo "Loading programs"
 $PUSHCMD ../wlan/wlan.py
-$PUSHCMD mqtt_writer_aws.py
+$PUSHCMD ../LED/LED.py
+$PUSHCMD mqtt_reader_aws.py
 $PUSHCMD awsiotconfig.py
 $PUSHCMD main.py
 
-echo "Reset board manually"
-echo "Starting test monitor, waiting for esp32 to start publishing..."
+echo "Resetting board"
+sudo timeout 2  ampy --port /dev/ttyUSB0 run ../reset/reset.py
 
-
-mosquitto_sub \
+echo "Publish message to turn LED on and off"
+echo "Loops forever so ctrl-C when done"
+while [ 1 ];
+do
+  mosquitto_pub \
   -h "${MQTT_HOST}" \
   --cert ${CERT_FILE_PATH} \
   --cafile ${ROOT_CERT_FILE_PATH} \
   --key ${KEY_FILE_PATH} \
   -t "${MQTT_TOPIC}" \
   -i "testmonitor" \
-  -p ${MQTT_PORT}
+  -p ${MQTT_PORT} \
+  -m "on"
+
+  sleep 1
+
+  mosquitto_pub \
+  -h "${MQTT_HOST}" \
+  --cert ${CERT_FILE_PATH} \
+  --cafile ${ROOT_CERT_FILE_PATH} \
+  --key ${KEY_FILE_PATH} \
+  -t "${MQTT_TOPIC}" \
+  -i "testmonitor" \
+  -p ${MQTT_PORT} \
+  -m "off"
+
+  sleep 1
+done

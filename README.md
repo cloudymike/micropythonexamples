@@ -23,7 +23,7 @@ sudo ampy --port /dev/ttyUSB0 put main.py
     sudo ampy --port /dev/ttyUSB0 run <devicename>/reset/reset.py
     ```
 
-(Note: Some examples include a loadfiles.sh script to do the program loading of multiple files)
+(Note: Some examples include a RUN.sh script to do the program loading and resetting of device)
 
 Make sure no one else is talking to the device (i.e. no terminal open)
 
