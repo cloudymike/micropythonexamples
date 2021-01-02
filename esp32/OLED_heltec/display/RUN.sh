@@ -3,6 +3,7 @@ PORT='/dev/ttyUSB0'
 PUSHCMD="ampy --port $PORT put "
 
 $PUSHCMD ssd1306.py
+$PUSHCMD gfx.py
 $PUSHCMD main.py
 
 echo "Resetting board"
