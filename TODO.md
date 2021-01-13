@@ -18,6 +18,7 @@
         * ✓ esp32/devboard/blinkblue
 * The device should run internal controller for reaching desired state, as PID or simple thermostat
 * Setup WLAN w/o hardcoding: https://randomnerdtutorials.com/micropython-wi-fi-manager-esp32-esp8266/
+* OTA code updates: https://medium.com/@ronald.dehuysser/micropython-ota-updates-and-github-a-match-made-in-heaven-45fde670d4eb
 
 ## Next steps
 * OLED display to show current value (Hall OK)
