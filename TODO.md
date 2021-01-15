@@ -21,8 +21,9 @@
 * OTA code updates: https://medium.com/@ronald.dehuysser/micropython-ota-updates-and-github-a-match-made-in-heaven-45fde670d4eb
 
 ## Next steps
-* OLED display to show current value (Hall OK)
-* Parameterize with terraform AWS subscription and client ID and use in python load.
+* RTC, realtime clock, print output in seconds or show on OLED
+  * Use ntp to set time, use UTC for output time
+* Over the air software update
 
 ## Information and links
 Here are some useful pages to draw on for creating the examples
