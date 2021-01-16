@@ -22,6 +22,8 @@ KEY_FILE=key
 # Create command alias
 PORT='/dev/ttyUSB0'
 PUSHCMD="ampy --port $PORT put "
+CURDIR=$(pwd)
+TOPDIR=${CURDIR%/*}
 
 echo "Loading certs and keys"
 $PUSHCMD ${CERT_FILE_PATH} ${CERT_FILE}
@@ -46,7 +48,7 @@ MQTT_HOST = "${MQTT_HOST}"
 EOF
 
 echo "Loading programs"
-$PUSHCMD ../wlan/wlan.py
+$PUSHCMD $TOPDIR/wlan/wlan.py
 $PUSHCMD mqtt_writer_aws.py
 $PUSHCMD awsiotconfig.py
 $PUSHCMD main.py
