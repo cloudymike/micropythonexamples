@@ -6,8 +6,11 @@ import machine
 import esp32
 import time
 
-
 while(1):
     magneto=esp32.hall_sensor()
     print(magneto)
     time.sleep_ms(750)
+    if __name__ != "__main__":
+        assert(type(magneto) == int)
+        print('TESTOK')
+        break
