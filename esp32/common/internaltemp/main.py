@@ -10,3 +10,7 @@ while(1):
     temp=esp32.raw_temperature()
     print(temp)
     time.sleep_ms(750)
+    if __name__ != "__main__":
+        assert(type(temp) == int)
+        print('TESTOK')
+        break
