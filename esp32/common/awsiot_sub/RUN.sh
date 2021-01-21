@@ -23,6 +23,10 @@ KEY_FILE=key
 PORT='/dev/ttyUSB0'
 PUSHCMD="ampy --port $PORT put "
 
+# Know where you are
+CURDIR=$(pwd)
+TOPDIR=${CURDIR%/*}
+
 echo "Loading certs and keys"
 $PUSHCMD ${CERT_FILE_PATH} ${CERT_FILE}
 $PUSHCMD ${KEY_FILE_PATH} ${KEY_FILE}
@@ -46,8 +50,8 @@ MQTT_HOST = "${MQTT_HOST}"
 EOF
 
 echo "Loading programs"
-$PUSHCMD ../wlan/wlan.py
-$PUSHCMD ../LED/LED.py
+$PUSHCMD $TOPDIR/wlan/wlan.py
+$PUSHCMD $TOPDIR/LED/LED.py
 $PUSHCMD mqtt_reader_aws.py
 $PUSHCMD awsiotconfig.py
 $PUSHCMD main.py
