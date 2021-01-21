@@ -22,7 +22,8 @@ if __name__ == "__main__":  # pragma: no cover
         # wait_msg seems better than subscribe. Go figure.
         # If no message, will wait forever
         #m.subscribe()
-        m.wait_msg()
+        m.check_msg()
+        time.sleep(1)
 
     print('Done, disconnecting')
     m.disconnect()
