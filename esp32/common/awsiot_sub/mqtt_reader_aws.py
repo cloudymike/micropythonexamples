@@ -11,6 +11,7 @@ def sub_cb(topic, msg):
         LED.LED.off()
 
 
+# Wrapper around MQTT client with AWS setup
 class MQTTReaderAWS:
     __slots__ = ('host', 'port', 'topic', 'client')
 
@@ -59,3 +60,6 @@ class MQTTReaderAWS:
 
     def wait_msg(self):
         self.mqtt_client.wait_msg()
+
+    def subscribe(self):
+        self.mqtt_client.subscribe(self.topic, 0)
