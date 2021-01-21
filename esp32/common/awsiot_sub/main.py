@@ -17,8 +17,13 @@ if __name__ == "__main__":  # pragma: no cover
         awsiotconfig.KEY_FILE,
         awsiotconfig.CERT_FILE)
 
-
+    print('Start subscribe')
     while 1:
-        m.wait_msg()
+        # wait_msg seems better than subscribe. Go figure.
+        # If no message, will wait forever
+        #m.subscribe()
+        m.check_msg()
+        time.sleep(1)
 
+    print('Done, disconnecting')
     m.disconnect()
