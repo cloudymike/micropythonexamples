@@ -106,3 +106,9 @@ Other useful commands:
   import os
   os.listdir()
 ```
+
+## Hard reboot reload device
+If you can not get the device to connect it is probably major messed up in flash.
+If so erase flash and reload micropython. If it does not even allow connection to
+erase flash, then hold down the boot button, start the erase command with esptools
+and then let go of the boot button and the device should get erased.
