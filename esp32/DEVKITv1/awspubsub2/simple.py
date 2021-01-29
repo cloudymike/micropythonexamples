@@ -56,9 +56,13 @@ class MQTTClient:
     def connect(self, clean_session=True):
         self.sock = socket.socket()
         addr = socket.getaddrinfo(self.server, self.port)[0][-1]
+        print("Socket connect")
         self.sock.connect(addr)
+
         if self.ssl:
+            print("Setting up SSL")
             self.sock = ussl.wrap_socket(self.sock, **self.ssl_params)
+        print("SSL done")
         premsg = bytearray(b"\x10\0\0\0\0\0")
         msg = bytearray(b"\x04MQTT\x04\x02\0\0")
 
