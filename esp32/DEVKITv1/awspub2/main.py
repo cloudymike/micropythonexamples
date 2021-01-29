@@ -7,7 +7,7 @@ import awsiotconfig
 
 from mqtt_writer_aws import MQTTWriterAWS
 
-wlan.do_connect()
+wlan.fresh_connect()
 m = MQTTWriterAWS(
     awsiotconfig.MQTT_CLIENT_ID,
     awsiotconfig.MQTT_HOST,

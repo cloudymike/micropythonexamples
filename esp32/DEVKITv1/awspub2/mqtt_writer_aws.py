@@ -1,6 +1,6 @@
-from simple import MQTTClient
+from robust import MQTTClient
 import json
-
+import time
 
 class MQTTWriterAWS:
     __slots__ = ('host', 'port', 'topic', 'client')
@@ -31,7 +31,14 @@ class MQTTWriterAWS:
 
     def _connect(self):
         print("Connecting to %s:%s" % (self.host, self.port))
-        self.mqtt_client.connect()
+        connected = False
+        while not connected:
+            try:
+                self.mqtt_client.connect()
+                connected = True
+            except:
+                print("Try to connect mqtt again....")
+                time.sleep(1)
         print("Connection successful")
 
     def pub_msg(self, msg):

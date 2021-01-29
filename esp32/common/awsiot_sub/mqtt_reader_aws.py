@@ -1,5 +1,5 @@
 import machine
-from umqtt.simple import MQTTClient
+from umqtt.robust import MQTTClient
 import json
 import LED
 
