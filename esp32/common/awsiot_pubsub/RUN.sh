@@ -13,7 +13,8 @@ WLAN_CONFIG_PATH=~/secrets/upytest/wlanconfig.py
 #MQTT_HOST="a2d09uxsvr5exq-ats.iot.us-west-2.amazonaws.com"
 MQTT_HOST=$(cut -f 3 -d ' ' < ../awsiot_terraform/endpoint.py)
 MQTT_PORT=8883
-MQTT_TOPIC="upypub"
+MQTT_PUB_TOPIC="upypub"
+MQTT_SUB_TOPIC="upysub"
 
 # Filename for cert and key on the esp32 device
 CERT_FILE=cert
@@ -41,7 +42,8 @@ MQTT_CLIENT_ID = "esp32"
 MQTT_PORT = "${MQTT_PORT}"
 
 #if you change the topic make sure update AWS policy
-MQTT_TOPIC = "${MQTT_TOPIC}"
+MQTT_PUB_TOPIC = "${MQTT_PUB_TOPIC}"
+MQTT_SUB_TOPIC = "${MQTT_SUB_TOPIC}"
 
 #Change the following to match your environment
 MQTT_HOST = "${MQTT_HOST}"
@@ -63,6 +65,6 @@ mosquitto_sub \
   --cert ${CERT_FILE_PATH} \
   --cafile ${ROOT_CERT_FILE_PATH} \
   --key ${KEY_FILE_PATH} \
-  -t "${MQTT_TOPIC}" \
+  -t "${MQTT_PUB_TOPIC}" \
   -i "testmonitor" \
   -p ${MQTT_PORT}
