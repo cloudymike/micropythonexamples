@@ -12,5 +12,5 @@ TOPDIR=${CURDIR%/*}
 
 echo "Loading packages"
 $PUSHCMD ${WLAN_CONFIG_PATH}
-$PUSHCMD ../esp32/wlan.py
+$PUSHCMD $TOPDIR/common/wlan/wlan.py
 timeout 20  ampy --port /dev/ttyUSB0 run upip_install.py
