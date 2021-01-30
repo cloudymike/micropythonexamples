@@ -88,7 +88,7 @@ mosquitto_sub \
         --cert ${CERT_FILE_PATH} \
         --cafile ${ROOT_CERT_FILE_PATH} \
         --key ${KEY_FILE_PATH} \
-        -t "${MQTT_TOPIC}" \
+        -t "${MQTT_SUB_TOPIC}" \
         -i "testmonitor" \
         -p ${MQTT_PORT} \
         -m "on"
@@ -98,7 +98,7 @@ mosquitto_sub \
           --cert ${CERT_FILE_PATH} \
           --cafile ${ROOT_CERT_FILE_PATH} \
           --key ${KEY_FILE_PATH} \
-          -t "${MQTT_TOPIC}" \
+          -t "${MQTT_SUB_TOPIC}" \
           -i "testmonitor" \
           -p ${MQTT_PORT} \
           -m "off"
