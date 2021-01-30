@@ -8,6 +8,7 @@ import awsiotconfig
 from mqtt_aws import MQTTAWS
 
 wlan.do_connect()
+time.sleep(10)
 m = MQTTAWS(
     awsiotconfig.MQTT_CLIENT_ID,
     awsiotconfig.MQTT_HOST,
@@ -19,9 +20,10 @@ m = MQTTAWS(
 while(1):
     magneto=esp32.hall_sensor()
     print(magneto)
-    m.pub_msg("{\"message\":" + str(magneto) + "}")
+    #m.pub_msg("{\"message\":" + str(magneto) + "}")
+    m.on_next(magneto)
     m.check_msg()
-    time.sleep_ms(10000)
+    time.sleep_ms(2000)
     if __name__ != "__main__":  # pragma: no cover
         print('TESTOK')
         break

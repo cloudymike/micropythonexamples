@@ -51,6 +51,8 @@ EOF
 
 echo "Loading programs"
 $PUSHCMD $TOPDIR/wlan/wlan.py
+$PUSHCMD $TOPDIR/LED/LED.py
+$PUSHCMD simple.py
 $PUSHCMD mqtt_aws.py
 $PUSHCMD awsiotconfig.py
 $PUSHCMD main.py
@@ -68,6 +70,7 @@ mosquitto_sub \
   -t "${MQTT_PUB_TOPIC}" \
   -i "testmonitor" \
   -p ${MQTT_PORT} &
+
 
   echo "Publish message to turn LED on and off"
   echo "Loops forever press any key when done"
@@ -88,21 +91,21 @@ mosquitto_sub \
         --cert ${CERT_FILE_PATH} \
         --cafile ${ROOT_CERT_FILE_PATH} \
         --key ${KEY_FILE_PATH} \
-        -t "${MQTT_SUB_TOPIC}" \
+        -t "${MQTT_TOPIC}" \
         -i "testmonitor" \
         -p ${MQTT_PORT} \
         -m "on"
-          sleep 10
+          sleep 1
           mosquitto_pub \
           -h "${MQTT_HOST}" \
           --cert ${CERT_FILE_PATH} \
           --cafile ${ROOT_CERT_FILE_PATH} \
           --key ${KEY_FILE_PATH} \
-          -t "${MQTT_SUB_TOPIC}" \
+          -t "${MQTT_TOPIC}" \
           -i "testmonitor" \
           -p ${MQTT_PORT} \
           -m "off"
-          sleep 10
+          sleep 1
       fi
   done
 
