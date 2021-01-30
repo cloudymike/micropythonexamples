@@ -59,31 +59,49 @@ $PUSHCMD main.py
 echo "Resetting board"
 sudo timeout 2  ampy --port /dev/ttyUSB0 run ../reset/reset.py
 
+
 echo "Publish message to turn LED on and off"
-echo "Loops forever so ctrl-C when done"
+echo "Loops forever press any key when done"
+
+old_tty=$(stty --save)
+# Minimum required changes to terminal.  Add -echo to avoid output to screen.
+stty -icanon min 0;
+
 while [ 1 ];
 do
-  mosquitto_pub \
-  -h "${MQTT_HOST}" \
-  --cert ${CERT_FILE_PATH} \
-  --cafile ${ROOT_CERT_FILE_PATH} \
-  --key ${KEY_FILE_PATH} \
-  -t "${MQTT_TOPIC}" \
-  -i "testmonitor" \
-  -p ${MQTT_PORT} \
-  -m "on"
+  if read -t 0; then # Input ready
+      read -n 1 char
+      echo -e "\nRead: ${char}\n"
+      break
+  else # No input
+    mosquitto_pub \
+    -h "${MQTT_HOST}" \
+    --cert ${CERT_FILE_PATH} \
+    --cafile ${ROOT_CERT_FILE_PATH} \
+    --key ${KEY_FILE_PATH} \
+    -t "${MQTT_TOPIC}" \
+    -i "testmonitor" \
+    -p ${MQTT_PORT} \
+    -m "on"
 
-  sleep 1
+    sleep 1
 
-  mosquitto_pub \
-  -h "${MQTT_HOST}" \
-  --cert ${CERT_FILE_PATH} \
-  --cafile ${ROOT_CERT_FILE_PATH} \
-  --key ${KEY_FILE_PATH} \
-  -t "${MQTT_TOPIC}" \
-  -i "testmonitor" \
-  -p ${MQTT_PORT} \
-  -m "off"
+    mosquitto_pub \
+    -h "${MQTT_HOST}" \
+    --cert ${CERT_FILE_PATH} \
+    --cafile ${ROOT_CERT_FILE_PATH} \
+    --key ${KEY_FILE_PATH} \
+    -t "${MQTT_TOPIC}" \
+    -i "testmonitor" \
+    -p ${MQTT_PORT} \
+    -m "off"
 
-  sleep 1
+    sleep 1
+  fi
 done
+
+
+stty $old_tty
+#pkill -9 mosquitto_sub
+
+echo "Quitting but there may be more messages in the queue so LED may keep blinking"
