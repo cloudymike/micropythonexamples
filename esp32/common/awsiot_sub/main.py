@@ -4,6 +4,7 @@ import wlan
 import json
 import esp32
 import awsiotconfig
+import LED
 
 from mqtt_reader_aws import MQTTReaderAWS
 
@@ -23,6 +24,10 @@ if __name__ == "__main__":  # pragma: no cover
         # If no message, will wait forever
         #m.subscribe()
         m.check_msg()
+        if m.last_msg() == "on":
+            LED.LED.on()
+        if m.last_msg() == "off":
+            LED.LED.off()
         time.sleep(1)
 
     print('Done, disconnecting')

@@ -84,7 +84,7 @@ do
     -p ${MQTT_PORT} \
     -m "on"
 
-    sleep 1
+    sleep 5
 
     mosquitto_pub \
     -h "${MQTT_HOST}" \
@@ -96,7 +96,7 @@ do
     -p ${MQTT_PORT} \
     -m "off"
 
-    sleep 1
+    sleep 5
   fi
 done
 

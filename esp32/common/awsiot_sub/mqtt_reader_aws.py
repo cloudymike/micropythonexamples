@@ -1,15 +1,13 @@
 import machine
 from umqtt.simple import MQTTClient
 import json
-import LED
+
+MESSAGE = b''
 
 def sub_cb(topic, msg):
-    print((topic, msg))
-    if msg == b'on':
-        LED.LED.on()
-    if msg == b'off':
-        LED.LED.off()
-
+    global MESSAGE
+    MESSAGE = msg
+    print((topic, MESSAGE))
 
 # Wrapper around MQTT client with AWS setup
 class MQTTReaderAWS:
@@ -74,3 +72,6 @@ class MQTTReaderAWS:
     # Behaves like wait_msg, but worse
     def subscribe(self):
         self.mqtt_client.subscribe(self.topic, 0)
+
+    def last_msg(self):
+        return(str(MESSAGE, 'utf-8'))
