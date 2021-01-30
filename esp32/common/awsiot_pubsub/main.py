@@ -21,7 +21,7 @@ while(1):
     print(magneto)
     m.pub_msg("{\"message\":" + str(magneto) + "}")
     m.check_msg()
-    time.sleep_ms(750)
+    time.sleep_ms(10000)
     if __name__ != "__main__":  # pragma: no cover
         print('TESTOK')
         break

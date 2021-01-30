@@ -92,7 +92,7 @@ mosquitto_sub \
         -i "testmonitor" \
         -p ${MQTT_PORT} \
         -m "on"
-          sleep 1
+          sleep 10
           mosquitto_pub \
           -h "${MQTT_HOST}" \
           --cert ${CERT_FILE_PATH} \
@@ -102,7 +102,7 @@ mosquitto_sub \
           -i "testmonitor" \
           -p ${MQTT_PORT} \
           -m "off"
-          sleep 1
+          sleep 10
       fi
   done
 
