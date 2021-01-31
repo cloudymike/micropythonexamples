@@ -4,6 +4,7 @@ import wlan
 import json
 import esp32
 import awsiotconfig
+import LED
 
 from mqtt_aws import MQTTAWS
 
@@ -21,7 +22,11 @@ while(1):
     print(magneto)
     m.pub_msg("{\"message\":" + str(magneto) + "}")
     m.check_msg()
-    time.sleep_ms(10000)
+    if m.last_msg() == "on":
+        LED.LED.on()
+    if m.last_msg() == "off":
+        LED.LED.off()
+    time.sleep_ms(5000)
     if __name__ != "__main__":  # pragma: no cover
         print('TESTOK')
         break

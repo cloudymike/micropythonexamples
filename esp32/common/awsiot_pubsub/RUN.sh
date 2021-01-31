@@ -102,7 +102,7 @@ mosquitto_sub \
           -i "testmonitor" \
           -p ${MQTT_PORT} \
           -m "off"
-          sleep 10
+          sleep 5
       fi
   done
 
