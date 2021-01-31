@@ -1,14 +1,11 @@
 from umqtt.simple import MQTTClient
-import LED
+
+MESSAGE = b''
 
 def sub_cb(topic, msg):
-    print((topic, msg))
-    if msg == b'on':
-        LED.LED.on()
-    if msg == b'off':
-        LED.LED.off()
-
-
+    global MESSAGE
+    MESSAGE = msg
+    print((topic, MESSAGE))
 
 class MQTTAWS:
     __slots__ = ('host', 'port', 'topic', 'client')
@@ -81,3 +78,6 @@ class MQTTAWS:
     # Behaves like wait_msg, but worse
     def subscribe(self):
         self.mqtt_client.subscribe(self.topic, 0)
+
+    def last_msg(self):
+        return(str(MESSAGE, 'utf-8'))
