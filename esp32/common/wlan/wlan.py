@@ -13,6 +13,7 @@ def do_connect():
     import network
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
+    wlan.config(dhcp_hostname='micropythonexamples')
     if not wlan.isconnected():
         print('connecting to network...')
         wlan.connect(wlanconfig.ESSID,wlanconfig.PASSWORD)
