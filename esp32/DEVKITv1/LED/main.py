@@ -3,7 +3,5 @@ import time
 
 if __name__ == "__main__":
     while(1):
-        LED.LED.off()
-        time.sleep_ms(500)
-        LED.LED.on()
+        LED.LED.value(abs(LED.LED.value()-1))
         time.sleep_ms(500)
