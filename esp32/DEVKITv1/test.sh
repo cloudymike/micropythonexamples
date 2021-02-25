@@ -1,6 +1,12 @@
 #!/bin/bash
+if [ "$1" != "" ]
+then
+	DIRS=$1
+else
+	DIRS=*
+fi
 
-for d in *
+for d in $DIRS
 do
 	if [[ -d $d ]]
 	then
@@ -19,4 +25,3 @@ do
 		fi
 	fi
 done
-
