@@ -6,6 +6,7 @@ CURDIR=$(pwd)
 TOPDIR=${CURDIR%/*}
 
 # Enter your path to your WLAN configuration file here, see ../wlan/wlanconfig.py for example
+echo "Loading code and configuration"
 $PUSHCMD ~/secrets/wlanconfig.py
 
 $PUSHCMD $TOPDIR/wlan/wlan.py
