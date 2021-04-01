@@ -1,13 +1,19 @@
 #!/bin/bash
 
+WLAN_CONFIG_PATH=~/secrets/upytest/wlanconfig.py
+
 # Create command aliasPORT='/dev/ttyUSB0'
 PORT='/dev/ttyUSB0'
 PUSHCMD="ampy --port $PORT put "
 CURDIR=$(pwd)
 TOPDIR=${CURDIR%/*}
 
-echo "Loading programs"
+echo "Loading configs"
+$PUSHCMD ${WLAN_CONFIG_PATH}
 $PUSHCMD ~/secrets/gcloud/config.py
+
+echo "Loading programs"
+$PUSHCMD $TOPDIR/wlan/wlan.py
 $PUSHCMD third_party
 $PUSHCMD main.py
 
