@@ -10,7 +10,7 @@ TOPDIR=${CURDIR%/*}
 
 echo "Loading configs"
 $PUSHCMD ${WLAN_CONFIG_PATH}
-$PUSHCMD ~/secrets/gcloud/config.py
+$PUSHCMD config.py
 
 echo "Loading programs"
 $PUSHCMD $TOPDIR/wlan/wlan.py
