@@ -3,6 +3,11 @@ MicroPython Example with Google IoT Core
 
 This sample demonstrates how to use MicroPython to connect to Cloud IoT Core incorporating parts from [TrackingPrototype](https://github.com/jbrichau/TrackingPrototype).
 
+## MH Setting up key
+Run createkey.sh to create an upload key to gcloud as well as creating a config file
+
+
+
 ## Quickstart with Espressif ESP32
 
 1. Clone or download this repository

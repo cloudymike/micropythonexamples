@@ -12,7 +12,23 @@ openssl rsa -in rsa_private.pem -pubout -out rsa_public.pem
 MYKEY=$(python utils/decode_rsa.py)
 
 # TODO create python wrapper for the integer
-cat > gcloudconfig.py << EOF
+cat > config.py << EOF
+#
+# Configuration File
+device_config = {
+  'led_pin': 2
+}
+
+
+google_cloud_config = {
+    'project_id':'oauthtest-164000',
+    'cloud_region':'us-central1',
+    'registry_id':'tempctrl',
+    'device_id':'esp32tempctrl',
+    'mqtt_bridge_hostname':'mqtt.googleapis.com',
+    'mqtt_bridge_port':8883
+}
+
 jwt_config = {
     'algorithm':'RS256',
     'token_ttl': 43200, #12 hours
@@ -21,7 +37,6 @@ jwt_config = {
 }
 EOF
 
-exit 0
 
 # Push public key to gcloud
 gcloud iot devices credentials create \
