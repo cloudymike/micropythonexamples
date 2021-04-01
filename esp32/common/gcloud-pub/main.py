@@ -14,7 +14,7 @@
 import machine
 import esp32
 from third_party import string
-import network
+#import network
 import socket
 import os
 import utime
@@ -26,22 +26,14 @@ from machine import RTC, Pin
 import ntptime
 import ujson
 import config
+import wlan
 
-sta_if = network.WLAN(network.STA_IF)
 led_pin = machine.Pin(config.device_config['led_pin'], Pin.OUT) #built-in LED pin
 led_pin.value(1)
 
 def on_message(topic, message):
     print((topic,message))
 
-def connect():
-    if not sta_if.isconnected():
-        print('connecting to network...')
-        sta_if.active(True)
-        sta_if.connect(config.wifi_config['ssid'], config.wifi_config['password'])
-        while not sta_if.isconnected():
-            pass
-    print('network config: {}'.format(sta_if.ifconfig()))
 
 def set_time():
     ntptime.settime()
@@ -87,7 +79,7 @@ def get_mqtt_client(project_id, cloud_region, registry_id, device_id, jwt):
     client.subscribe('/devices/{}/commands/#'.format(device_id), 1)
     return client
 
-connect()
+wlan.do_connect()
 #Need to be connected to the internet before setting the local RTC.
 set_time()
 
