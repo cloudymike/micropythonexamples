@@ -14,6 +14,7 @@ $PUSHCMD config.py
 
 echo "Loading programs"
 $PUSHCMD $TOPDIR/wlan/wlan.py
+$PUSHCMD $TOPDIR/LED/LED.py
 $PUSHCMD third_party
 $PUSHCMD main.py
 

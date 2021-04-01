@@ -27,9 +27,9 @@ import ntptime
 import ujson
 import config
 import wlan
+import LED
 
-led_pin = machine.Pin(config.device_config['led_pin'], Pin.OUT) #built-in LED pin
-led_pin.value(1)
+LED.LED.value(1)
 
 def on_message(topic, message):
     print((topic,message))
@@ -92,10 +92,10 @@ while True:
         "temp": esp32.raw_temperature()
     }
     print("Publishing message "+str(ujson.dumps(message)))
-    led_pin.value(1)
+    LED.LED.value(1)
     mqtt_topic = '/devices/{}/{}'.format(config.google_cloud_config['device_id'], 'events')
     client.publish(mqtt_topic.encode('utf-8'), ujson.dumps(message).encode('utf-8'))
-    led_pin.value(0)
+    LED.LED.value(0)
 
     client.check_msg() # Check for new messages on subscription
     utime.sleep(10)  # Delay for 10 seconds.
