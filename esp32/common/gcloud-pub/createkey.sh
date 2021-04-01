@@ -15,10 +15,6 @@ MYKEY=$(python utils/decode_rsa.py)
 cat > config.py << EOF
 #
 # Configuration File
-device_config = {
-  'led_pin': 2
-}
-
 
 google_cloud_config = {
     'project_id':'oauthtest-164000',
