@@ -21,8 +21,6 @@ import ujson
 import wlan
 import LED
 
-import config
-
 
 import mqttgcloud
 
@@ -45,15 +43,15 @@ m = mqttgcloud.MQTTgcloud()
 client = m.get_client()
 
 while True:
-    mqtt_topic = '/devices/{}/{}'.format(config.google_cloud_config['device_id'], 'events')
+    subtopic = 'halltemp'
     message = {
-        "topic": mqtt_topic,
+        "subtopic": subtopic,
         "hall": esp32.hall_sensor(),
         "temp": esp32.raw_temperature()
     }
     print("Publishing message "+str(ujson.dumps(message)))
     LED.LED.value(1)
-    m.publish(mqtt_topic.encode('utf-8'), ujson.dumps(message).encode('utf-8'))
+    m.publish(subtopic, ujson.dumps(message))
     LED.LED.value(0)
 
     m.check_msg() # Check for new messages on subscription

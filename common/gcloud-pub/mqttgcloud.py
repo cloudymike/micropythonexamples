@@ -37,8 +37,9 @@ class MQTTgcloud:
         return(self.client)
 
     # Wrapper
-    def publish(self,topic,message):
-        self.client.publish(topic,message)
+    def publish(self, subtopic, message):
+        topic = '/devices/{}/{}'.format(config.google_cloud_config['device_id'], subtopic)
+        self.client.publish(topic.encode('utf-8'), message.encode('utf-8'))
 
     # Wrapper
     def check_msg(self):
