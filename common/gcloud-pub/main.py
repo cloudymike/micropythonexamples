@@ -43,15 +43,13 @@ m = mqttgcloud.MQTTgcloud()
 client = m.get_client()
 
 while True:
-    subtopic = 'halltemp'
     message = {
-        "subtopic": subtopic,
         "hall": esp32.hall_sensor(),
         "temp": esp32.raw_temperature()
     }
     print("Publishing message "+str(ujson.dumps(message)))
     LED.LED.value(1)
-    m.publish(subtopic, ujson.dumps(message))
+    m.publish(ujson.dumps(message))
     LED.LED.value(0)
 
     m.check_msg() # Check for new messages on subscription
