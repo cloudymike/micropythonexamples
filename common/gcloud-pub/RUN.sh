@@ -16,6 +16,7 @@ echo "Loading programs"
 $PUSHCMD $TOPDIR/wlan/wlan.py
 $PUSHCMD $TOPDIR/LED/LED.py
 $PUSHCMD third_party
+$PUSHCMD mqttgcloud.py
 $PUSHCMD main.py
 
 echo "Resetting board"
