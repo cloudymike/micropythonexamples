@@ -21,7 +21,11 @@ from machine import RTC, Pin
 import ujson
 import config
 
+MESSAGE = b''
+
 def on_message(topic, message):
+    global MESSAGE
+    MESSAGE = message
     print((topic,message))
 
 
@@ -78,3 +82,6 @@ class MQTTgcloud:
         client.subscribe('/devices/{}/config'.format(device_id), 1)
         client.subscribe('/devices/{}/commands/#'.format(device_id), 1)
         return client
+
+    def last_msg(self):
+        return(str(MESSAGE, 'utf-8'))
