@@ -53,4 +53,5 @@ while True:
     LED.LED.value(0)
 
     m.check_msg() # Check for new messages on subscription
+    print('Last message: {}'.format(m.last_msg()))
     utime.sleep(10)  # Delay for 10 seconds.
