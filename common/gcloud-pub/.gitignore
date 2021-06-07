@@ -2,3 +2,5 @@ config.py
 *.pem
 env*/*
 screenlog*
+venv
+__pycache__

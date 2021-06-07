@@ -87,9 +87,13 @@ If everything worked you should see output similar to the following.
     Publishing message {“temp”: 114, “device_id”: “esp32-oled-1”}
     Publishing message {“temp”: 114, “device_id”: “esp32-oled-1”}
 
-You can read the telemetry from PubSub using the following [Google Cloud SDK](https://cloud.google.com/sdk) command.
-
-    gcloud pubsub subscriptions pull <your-pubsub-repo> --auto-ack --limit=500
+## Subscribe
+You can read the telemetry from PubSub using the python script included. It requires some packages and python3
+so make sure you are source setup.sh to setup the virtual environment
+```
+source setup.sh
+./subscriber.py
+```
 
 ## Troubleshooting
 If the device freezes around the time network initialization completes you may
