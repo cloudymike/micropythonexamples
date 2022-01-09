@@ -6,6 +6,10 @@ from time import sleep
 import os
 from time import sleep_ms
 import gfx
+import bignumber
+
+
+
 
 # ESP32 Pin assignment
 i2c = I2C(-1, scl=Pin(22), sda=Pin(21))
@@ -34,5 +38,16 @@ graphics = gfx.GFX(oled_width, oled_height, oled.pixel)
 graphics.fill_circle(64, 16, 16, 1)
 oled.show()
 sleep_ms(1000)
+
+oled.fill(1)
+oled.show()
+sleep_ms(1000)
+
+for number in range(15):
+    oled.fill(0)
+    bignumber.bigNumber(oled, number)
+    oled.show()
+    sleep_ms(10)
+oled.fill(0)
 oled.text('The end!', 60, 49)
 oled.show()
