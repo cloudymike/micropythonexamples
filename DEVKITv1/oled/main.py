@@ -33,6 +33,20 @@ oled.text('Hello, World 3!', 0, 20)
 
 oled.show()
 sleep_ms(1000)
+
+oled.fill(0)
+bignumber.bigDigit(oled, 0, 20, 4)
+bignumber.bigDot(oled,30,20)
+bignumber.bigDigit(oled, 40, 20, 2)
+bignumber.bigLetter(oled,70,20,'F')
+oled.show()
+sleep_ms(1000)
+bignumber.bigLetter(oled,70,20,'C')
+oled.show()
+sleep_ms(1000)
+
+
+
 oled.fill(0)
 graphics = gfx.GFX(oled_width, oled_height, oled.pixel)
 graphics.fill_circle(64, 16, 16, 1)
