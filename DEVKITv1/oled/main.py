@@ -38,9 +38,12 @@ oled.fill(0)
 bignumber.bigDigit(oled, 0, 20, 4)
 bignumber.bigDot(oled,30,20)
 bignumber.bigDigit(oled, 40, 20, 2)
-bignumber.bigF(oled,70,20)
+bignumber.bigLetter(oled,70,20,'F')
 oled.show()
-sleep_ms(10000)
+sleep_ms(1000)
+bignumber.bigLetter(oled,70,20,'C')
+oled.show()
+sleep_ms(1000)
 
 
 
