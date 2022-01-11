@@ -24,6 +24,39 @@ bm_colon = [254, 254, 254, 254, 254, 254, 254, 0, 0, 0, 0, 0, 0, 254, 254, 254, 
 
 digitMap=[bm0,bm1,bm2,bm3,bm4,bm5,bm6,bm7,bm8,bm9]
 
+def bigTemp(oled, temp, unit):
+
+    org_y = 20
+    width = 30
+
+    if temp >= 100:
+        noOfDigits = 3
+        displayTemp = temp
+        decimal = False
+    elif temp >= 10:
+        displayTemp = temp*10
+        noOfDigits = 3
+        decimal = True
+    else:
+        displayTemp = temp*10
+        noOfDigits = 2
+        decimal = True
+
+    org_x = (3 - noOfDigits ) * width
+
+    for digitNo in range(noOfDigits):
+        digit = int( (displayTemp / (10 ** (noOfDigits - digitNo - 1)) ) % 10 )
+        bigDigit(oled, org_x, org_y, digit)
+        org_x = org_x + width
+        if decimal and (noOfDigits-digitNo == 2):
+            bigDot(oled,org_x-3,org_y)
+            org_x = org_x + 6
+
+    bigLetter(oled,100,20,unit)
+    oled.show()
+
+
+
 def bigNumber(oled, number):
     org_y = 20
     width = 30
@@ -49,7 +82,7 @@ def bigDigit(oled, org_x, org_y, digit):
     displayBitmap(oled, org_x, org_y, width, height, bitmap)
 
 def bigDot(oled, org_x, org_y):
-    displayBitmap(oled, org_x, org_y+30, 1, 7, bm_dot)
+    displayBitmap(oled, org_x, org_y+31, 1, 7, bm_dot)
 
 def bigColon(oled, org_x, org_y):
     displayBitmap(oled, org_x, org_y+10, 1, 20, bm_colon)
