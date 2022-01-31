@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Push boot buton  if loading does not start"
+echo "Push boot button  if loading does not start"
 ./loadmicropython.sh
 sleep 20
 ./testmicropython.sh
