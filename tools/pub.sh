@@ -3,9 +3,9 @@
 #Define some variables, change if needed
 
 # These are your certificates, update with the path were you put it (and NOT in the repo)
-CERT_FILE_PATH=../terraform/certs/tempctrl_cert.pem.crt
-ROOT_CERT_FILE_PATH=../terraform/certs/AmazonRootCA1.pem
-KEY_FILE_PATH=../terraform/certs/tempctrl_cert.private.key
+CERT_FILE_PATH=../common/terraform/certs/tempctrl_cert.pem.crt
+ROOT_CERT_FILE_PATH=../common/terraform/certs/AmazonRootCA1.pem
+KEY_FILE_PATH=../common/terraform/certs/tempctrl_cert.private.key
 
 WLAN_CONFIG_PATH=~/secrets/wlanconfig.py
 
