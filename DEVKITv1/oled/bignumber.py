@@ -44,6 +44,7 @@ def bigTemp(oled, temp, unit):
 
     org_x = (3 - noOfDigits ) * width
 
+    oled.fill(0)
     for digitNo in range(noOfDigits):
         digit = int( (displayTemp / (10 ** (noOfDigits - digitNo - 1)) ) % 10 )
         bigDigit(oled, org_x, org_y, digit)

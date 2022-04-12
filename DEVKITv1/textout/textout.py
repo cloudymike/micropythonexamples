@@ -38,10 +38,14 @@ class textout:
         txt = str(txt)
         Xstart = 64-len(txt)*4
         self.oled.text(txt, Xstart, line*8)
-        
+
     def text(self, txt):
         txt = str(txt)
         self.oled.fill(0)
         Xstart = 64-len(txt)*4
         self.oled.text(txt, Xstart, 32)
         self.oled.show()
+
+    # Return oled reference for other graphics
+    def display(self):
+        return(self.oled)
