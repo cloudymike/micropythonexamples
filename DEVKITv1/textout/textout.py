@@ -39,6 +39,16 @@ class textout:
         Xstart = 64-len(txt)*4
         self.oled.text(txt, Xstart, line*8)
 
+    def leftline(self, txt, line=4):
+        txt = str(txt)
+        Xstart = 0
+        self.oled.text(txt, Xstart, line*8)
+
+    def rightline(self, txt, line=4):
+        txt = str(txt)
+        Xstart = Xstart = 112-len(txt)*4
+        self.oled.text(txt, Xstart, line*8)
+
     def text(self, txt):
         txt = str(txt)
         self.oled.fill(0)
