@@ -9,11 +9,11 @@ from network import WLAN
 from network import STA_IF
 import machine
 
-def do_connect():
+def do_connect(hostname='micropythonexamples'):
     import network
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
-    wlan.config(dhcp_hostname='micropythonexamples')
+    wlan.config(dhcp_hostname=hostname)
     if not wlan.isconnected():
         print('connecting to network...')
         wlan.connect(wlanconfig.ESSID,wlanconfig.PASSWORD)
