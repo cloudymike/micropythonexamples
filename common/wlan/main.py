@@ -5,6 +5,6 @@
 
 import wlan
 if __name__ == "__main__":
-    wlan.do_connect()
+    wlan.do_connect('wlan_test')
 #    wlan.fresh_connect()
 #    wlan.connect_wifi()
