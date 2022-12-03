@@ -4,10 +4,13 @@
 import machine
 import esp32
 import time
+import internaltempreader
 
+unit='F'
+tempDevice = internaltempreader.internaltempreader(unit)
 
 while(1):
-    temp=esp32.raw_temperature()
+    temp = tempDevice.get_temp()
     print(temp)
     time.sleep_ms(750)
     if __name__ != "__main__":
