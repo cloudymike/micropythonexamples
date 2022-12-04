@@ -14,7 +14,7 @@ $PUSHCMD mqtt_local.py
 $PUSHCMD main.py
 
 echo "Resetting board"
-sudo timeout 2  ampy --port /dev/ttyUSB0 run ../reset/reset.py
+timeout 2  ampy --port /dev/ttyUSB0 run ../reset/reset.py
 
 echo "Message published from hall sensor on device"
 mosquitto_sub -t sensor-data &
