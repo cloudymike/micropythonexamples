@@ -4,8 +4,11 @@ from umqtt.robust import MQTTClient
 import json
 import LED
 
+MESSAGE = b''
+
 def sub_cb(topic, msg):
     print((topic, msg))
+    MESSAGE=msg
     if msg == b'on':
         LED.LED.on()
     if msg == b'off':
@@ -29,7 +32,7 @@ class MQTTlocal:
     self.client.connect()
     print("Connection successful")
 
-  def on_next(self, x):
+  def publish(self, x):
     data = bytes(json.dumps(x), 'utf-8')
     self.client.publish(bytes(self.pub_topic, 'utf-8'), data)
 
@@ -44,3 +47,6 @@ class MQTTlocal:
   def check_msg(self):
     print("Check messages")
     self.client.check_msg()
+
+  def last_msg(self):
+    return(str(MESSAGE, 'utf-8'))
