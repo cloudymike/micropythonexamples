@@ -17,7 +17,7 @@ m = MQTTlocal('esp8266', mqtthost.MQTT_HOST, 1883, 'sensor-data', 'BlueLED')
 while(1):
     magneto=esp32.hall_sensor()
     print(magneto)
-    m.on_next(magneto)
+    m.publish(magneto)
     time.sleep_ms(2000)
     m.check_msg()
 
