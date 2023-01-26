@@ -53,7 +53,10 @@ def bigTemp(oled, temp, unit):
             org_x = org_x + 6
 
     bigLetter(oled,100,20,unit)
-    oled.show()
+    if oled:
+        oled.show()
+    else:
+        print("{}{}".format(temp,unit))
 
 
 
@@ -97,15 +100,16 @@ def bigLetter(oled, org_x, org_y, letter):
 
 
 def displayBitmap(oled, org_x, org_y, width, height, bitmap):
-    for row in range (height):
-        for bytecol in range (width):
-            byte = bitmap[row*width + bytecol]
-            for  i in range (8):
-                col = bytecol * 8 + i
-                x = org_x + col
-                y = org_y + row
-                map = 2**(7-i)
-                if map & byte:
-                    oled.pixel(x, y, 1)
-                else:
-                    oled.pixel(x, y, 0)
+    if oled:
+        for row in range (height):
+            for bytecol in range (width):
+                byte = bitmap[row*width + bytecol]
+                for  i in range (8):
+                    col = bytecol * 8 + i
+                    x = org_x + col
+                    y = org_y + row
+                    map = 2**(7-i)
+                    if map & byte:
+                        oled.pixel(x, y, 1)
+                    else:
+                        oled.pixel(x, y, 0)

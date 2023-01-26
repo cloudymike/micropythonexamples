@@ -9,7 +9,10 @@ then
 else
 	DIRS=*
 fi
-
+# Setup wlan, it is probably needed for some tests
+push wlan &> /dev/null
+timeout 120 ./RUN.sh &>/dev/null
+popd &> /dev/null
 FAILTEST=0
 for d in $DIRS
 do
