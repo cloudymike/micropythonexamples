@@ -13,6 +13,10 @@ fi
 echo "Setup wlan, it is probably needed for some tests"
 pushd wlan &> /dev/null
 timeout 120 ./RUN.sh &>/dev/null
+if [ "$?" != "0" ]
+then
+	echo "Could not connect to WLAN, will try the rest of test"
+fi
 popd &> /dev/null
 
 FAILTEST=0
