@@ -10,7 +10,8 @@ PUSHCMD="ampy --port $PORT put "
 CURDIR=$(pwd)
 TOPDIR=${CURDIR%/*}
 
-echo "Loading packages"
+echo "Loading wireless"
 $PUSHCMD ${WLAN_CONFIG_PATH}
 $PUSHCMD $TOPDIR/common/wlan/wlan.py
+echo "Load packages"
 timeout 20  ampy --port /dev/ttyUSB0 run upip_install.py

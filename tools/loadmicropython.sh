@@ -3,10 +3,10 @@ PACKAGE=esp32-idf3-20210130-unstable-v1.13-305-gb8f4c623f.bin
 PACKAGE=esp32-idf3-20200902-v1.13.bin
 PACKAGE=esp32-idf3-20191220-v1.12.bin
 PACKAGE=esp32-idf3-20190529-v1.11.bin
-PACKAGE=esp32spiram-idf3-20190529-v1.11.bin
+#PACKAGE=esp32spiram-idf3-20190529-v1.11.bin
 
-PACKAGE=esp32-idf3-20210130-unstable-v1.13-305-gb8f4c623f.bin
-PACKAGE=esp32-20220117-v1.18.bin
+#PACKAGE=esp32-idf3-20210130-unstable-v1.13-305-gb8f4c623f.bin
+#PACKAGE=esp32-20220117-v1.18.bin
 # Old: MicroPython v1.11 on 2019-05-29; ESP32 module with ESP32
 #PACKAGE=esp32-idf3-20190529-v1.11.bin
 
