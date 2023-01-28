@@ -2,10 +2,8 @@
 
 from machine import Pin, I2C
 import ssd1306
-from time import sleep
 import os
 from time import sleep_ms
-import gfx
 import bignumber
 
 # Helper function to allow testing without display

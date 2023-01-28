@@ -11,5 +11,4 @@ if __name__ == "__main__":
         t.text(42)
         time.sleep(2)
 else:
-    t.text('Just a test')
-    print('TESTOK')
+    t.text('TESTOK')
