@@ -11,6 +11,6 @@ $PUSHCMD main.py
 
 echo "Resetting board"
 timeout 2  ampy --port /dev/ttyUSB0 run ../reset/reset.py
-sleep 20
+sleep 40
 echo "Run test, if OK TESTOK will be shown. If failed, then stacktrace"
 ampy --port /dev/ttyUSB0 run test.py
