@@ -5,49 +5,28 @@
 
 import network
 import wlanconfig
-from network import WLAN
-from network import STA_IF
 import machine
+import time
 
 def do_connect(hostname='micropythonexamples'):
-    import network
-    wlan = network.WLAN(network.STA_IF)
-    wlan.active(True)
-    wlan.config(dhcp_hostname=hostname)
-    if not wlan.isconnected():
+    nic = network.WLAN(network.STA_IF)
+    nic.active(True)
+    nic.config(dhcp_hostname=hostname)
+    if not nic.isconnected():
         print('connecting to network...')
-        wlan.connect(wlanconfig.ESSID,wlanconfig.PASSWORD)
-        while not wlan.isconnected():
-            pass
-    print('network config:', wlan.ifconfig())
+        while not nic.isconnected():
+            nic.connect(wlanconfig.ESSID,wlanconfig.PASSWORD)
+            time.sleep_ms(500)
 
-def fresh_connect():
-    import network
-    wlan = network.WLAN(network.STA_IF)
-    wlan.active(True)
-    if(wlan.isconnected()):
-        wlan.disconnect()
+    print('network config:', nic.ifconfig())
+    return(nic)
+
+# Remove old connection if exist before reconnecting
+def fresh_connect(hostname='micropythonexamples'):
+    nic = network.WLAN(network.STA_IF)
+    nic.active(True)
+    if(nic.isconnected()):
+        nic.disconnect()
     print('connecting to network...')
-    wlan.connect(wlanconfig.ESSID,wlanconfig.PASSWORD)
-    while not wlan.isconnected():
-        pass
-    print('network config:', wlan.ifconfig())
-    ap_if = network.WLAN(network.AP_IF)
-    if ap_if.active():
-        ap_if.active(False)
-        print("Disconnected AP")
-
-
-def connect_wifi():
-
-    #wlan = WLAN()
-    wlan = network.WLAN(network.STA_IF)
-    #nets = wlan.scan()
-    if(wlan.isconnected()):
-        wlan.disconnect()
-    wlan.connect(wlanconfig.ESSID,wlanconfig.PASSWORD)
-    while not wlan.isconnected():
-        machine.idle() # save power while waiting
-        print('WLAN connection succeeded!')
-        break
-    print("connected:", wlan.ifconfig())
+    nic = do_connect(hostname)
+    return(nic)
