@@ -16,6 +16,10 @@ then
 	wget https://micropython.org/resources/firmware/$PACKAGE
 fi
 
+python3 -m venv venv
+source venv/bin/activate
+pip install  -r requirements.txt
+
 timeout 1  ampy --port /dev/ttyUSB0 run reset.py
-esptool/esptool.py --port /dev/ttyUSB0 erase_flash
-esptool/esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 ./$PACKAGE
+esptool.py --port /dev/ttyUSB0 erase_flash
+esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 ./$PACKAGE
