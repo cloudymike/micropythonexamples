@@ -15,5 +15,8 @@ def readState(filename='/state.json'):
         return({})
 
 def writeState(state, filename='/state.json'):
-    with open(filename, "w") as f:
-            json.dump(state, f)
+    oldState = readState(filename)
+    if oldState != state:
+        print("Writing state {}".format(state))
+        with open(filename, "w") as f:
+                json.dump(state, f)
