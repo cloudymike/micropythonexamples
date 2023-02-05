@@ -8,16 +8,15 @@ import random
 count = 0
 maxcount = 3
 
-oldstate = savestate.readState()
-print()
 
 if __name__ == "__main__":
     while(1):
+        oldstate = savestate.readState()
         stateval = random.randrange(100)
         state = {'stateval': stateval}
         savestate.writeState(state)
-        oldstate = state
         print('Old:{}  New:{}'.format(oldstate['stateval'], state['stateval']))
+        oldstate = state
         time.sleep_ms(750)
         if count > maxcount:
             break
@@ -28,6 +27,9 @@ if __name__ == "__main__":
 else:
         stateval = random.randrange(100)
         state = {'stateval': stateval}
+        savestate.writeState(state)
         laststate = savestate.readState()
+        print(laststate)
+        print(state)
         assert(laststate == state)
         print('TESTOK')
