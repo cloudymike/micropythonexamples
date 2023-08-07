@@ -1,6 +1,5 @@
-# Measures magnetic filed with interal hall sensor
-# Use a magnet right over the chip, try to turn it if the number does not change
-# Be careful, you do not want it to find the pins and short them.
+# Simple test to see if google can be pinged
+# Also a simple test that network is running
 
 import wlan
 import uping
