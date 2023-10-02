@@ -13,7 +13,6 @@
 PACKAGE=esp32-20220618-v1.19.1.bin
 #PACKAGE=ESP32_GENERIC-20230426-v1.20.0.bin
 
-https://micropython.org/resources/firmware/ESP32_GENERIC-20230426-v1.20.0.bin
 if [ ! -f $PACKAGE ]
 then
 	wget https://micropython.org/resources/firmware/$PACKAGE
