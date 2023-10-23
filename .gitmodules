@@ -1,3 +1,6 @@
 [submodule "esp32/tools/esptool"]
 	path = esp32/tools/esptool
 	url = git@github.com:espressif/esptool.git
+[submodule "libraries/uMail"]
+	path = libraries/uMail
+	url = https://github.com/shawwwn/uMail.git
