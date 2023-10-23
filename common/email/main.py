@@ -6,11 +6,13 @@
 import wlan
 import umail
 
+import emailconfig
+
 if __name__ == "__main__":
     mynetwork = wlan.do_connect('wlan_test')
 
 
-smtp = umail.SMTP('smtp.gmail.com', 587, username='my@gmail.com', password='mypassword')
-smtp.to('someones@gmail.com')
-smtp.send("This is an example.")
+smtp = umail.SMTP('smtp.gmail.com', 587, username=emailconfig.username, password=emailconfig.password)
+smtp.to(emailconfig.receiver)
+smtp.send("Subject: Test message\n\n This is an example email as would be sent from the ESP32 device. \n Mikael")
 smtp.quit()
