@@ -1,4 +1,6 @@
 #!/bin/bash
+
+PORT=/dev/ttyUSB0
 #PACKAGE=esp32-idf3-20210130-unstable-v1.13-305-gb8f4c623f.bin
 #PACKAGE=esp32-idf3-20200902-v1.13.bin
 #PACKAGE=esp32-idf3-20191220-v1.12.bin
@@ -22,6 +24,6 @@ python3 -m venv venv
 source venv/bin/activate
 pip install  -r requirements.txt
 
-timeout 1  ampy --port /dev/ttyUSB0 run reset.py
-esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
-esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 ./$PACKAGE
+timeout 1  ampy --port $PORT run reset.py
+esptool.py --chip esp32 --port $PORT erase_flash
+esptool.py --chip esp32 --port $PORT write_flash -z 0x1000 ./$PACKAGE
