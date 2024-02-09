@@ -7,7 +7,9 @@ unit='F'
 tempDevice = tempreader.tempreader(unit)
 while(1):
     temp = tempDevice.get_temp()
-    t.text("Temp: {:.1f}{}".format(temp,unit))
+    rom = tempDevice.get_rom()
+    t.terminalline(rom)
+    t.terminalline("Temp:{:.1f}{}".format(temp,unit))
     time.sleep_ms(750)
 
 '''

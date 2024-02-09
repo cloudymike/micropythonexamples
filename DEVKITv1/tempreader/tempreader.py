@@ -20,12 +20,19 @@ class tempreader:
 
 
     # Assume there is just one sensor
+    # =====================================================
     def get_temp(self):
         all=self.get_temp_list()
         hexi = ubinascii.hexlify(self.devicelist[0])
         return(all[hexi])
 
+    def get_rom(self):
+        all=self.get_temp_list()
+        hexstr = ubinascii.hexlify(self.devicelist[0]).decode("utf-8")
+        return(hexstr)
+
     # For a full list of sensors get all
+    # =====================================================
     def get_temp_list(self):
         tempdict = {}
         self.d.convert_temp()
