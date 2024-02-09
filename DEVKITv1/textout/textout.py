@@ -70,6 +70,22 @@ class textout:
             Xstart = 64-len(txt)*4
             self.oled.text(txt, Xstart, 32)
             self.oled.show()
+    
+    # Write as a terminal. Line is (second) yellow line. Scroll and one line to bottom
+    def terminalline(self,txt):
+        txt = str(txt)
+        Xstart = 0
+        print(txt)
+        if self.oled:
+            self.oled.scroll(0,8)
+            self.oled.text(str(txt), 0, 8)
+            self.oled.show()
+
+    def vscroll(self,lines=1):
+        pixels=-4*lines
+        if self.oled:
+            self.oled.scroll(0,pixels)
+            self.oled.show()
 
     # Return oled reference for other graphics
     def display(self):
