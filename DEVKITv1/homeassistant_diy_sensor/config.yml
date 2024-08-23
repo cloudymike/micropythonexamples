@@ -1,0 +1,5 @@
+mqtt:
+  - sensor:
+      unique_id: "diy_hall_sensor"
+      name: "DIY HALL SENSOR"
+      state_topic: "home/diy/hall"
