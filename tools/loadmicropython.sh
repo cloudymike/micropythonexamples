@@ -13,6 +13,8 @@
 PACKAGE=esp32-20220618-v1.19.1.bin
 #PACKAGE=ESP32_GENERIC-20230426-v1.20.0.bin
 
+PORT='/dev/ttyUSB0'
+
 if [ ! -f $PACKAGE ]
 then
 	wget https://micropython.org/resources/firmware/$PACKAGE
@@ -22,6 +24,6 @@ python3 -m venv venv
 source venv/bin/activate
 pip install  -r requirements.txt
 
-timeout 1  ampy --port /dev/ttyUSB0 run reset.py
-esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
-esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 ./$PACKAGE
+timeout 1  ampy --port $PORT run reset.py
+esptool.py --chip esp32 --port $PORT erase_flash
+esptool.py --chip esp32 --port $PORT write_flash -z 0x1000 ./$PACKAGE
