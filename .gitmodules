@@ -4,3 +4,6 @@
 [submodule "libraries/uMail"]
 	path = libraries/uMail
 	url = https://github.com/shawwwn/uMail.git
+[submodule "libraries/micropython-max7219"]
+	path = libraries/micropython-max7219
+	url = git@github.com:vrialland/micropython-max7219.git
