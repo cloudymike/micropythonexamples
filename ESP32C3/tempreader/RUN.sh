@@ -1,11 +1,7 @@
 #!/bin/bash
 
-if [ -n "$PORTNUMBER" ] 
-then
-	PORT="/dev/ttyACM${PORTNUMBER}"
-else
-	PORT='/dev/ttyACM0'
-fi
+USBPORT=$(ls /dev/ | grep -e USB -e ACM)
+PORT=/dev/$USBPORT
 echo Port used $PORT
 
 PUSHCMD="ampy --port $PORT put "

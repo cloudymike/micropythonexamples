@@ -1,11 +1,7 @@
 #!/bin/bash
-# IF portnumber is not 0 just export a variable with the right number
-if [ -n "$PORTNUMBER" ] 
-then
-	PORT="/dev/ttyACM${PORTNUMBER}"
-else
-	PORT='/dev/ttyACM0'
-fi
+
+USBPORT=$(ls /dev/ | grep -e USB -e ACM)
+PORT=/dev/$USBPORT
 echo Port used $PORT
 
 PUSHCMD="ampy --port $PORT put "

@@ -1,8 +1,8 @@
 #!/bin/bash
-PORT='/dev/ttyACM4'
-PUSHCMD="ampy --port $PORT put "
-CURDIR=$(pwd)
-TOPDIR=${CURDIR%/*}
+
+USBPORT=$(ls /dev/ | grep -e USB -e ACM)
+PORT=/dev/$USBPORT
+echo Port used $PORT
 
 ampy --port $PORT put  main.py
 ampy --port $PORT put  internaltempreader.py

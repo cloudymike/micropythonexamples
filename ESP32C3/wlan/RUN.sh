@@ -1,5 +1,9 @@
 #!/bin/bash
-PORT='/dev/ttyACM4'
+
+USBPORT=$(ls /dev/ | grep -e USB -e ACM)
+PORT=/dev/$USBPORT
+echo Port used $PORT
+
 PUSHCMD="ampy --port $PORT put "
 
 # Enter your path to your WLAN configuration file here, see ../wlan/wlanconfig.py for example
