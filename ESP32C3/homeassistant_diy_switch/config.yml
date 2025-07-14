@@ -1,0 +1,16 @@
+mqtt:
+  - switch:
+      unique_id: "diy_led_switch"
+      name: "DIY LED"
+      state_topic: "home/diy/blueled"
+      command_topic: "home/diy/blueled/set"
+      availability: 
+        - topic: "home/diy/blueled/available"
+      payload_on: "on"
+      payload_off: "off"
+      payload_available: "online"
+      payload_not_available: "offline"
+      optimistic: false
+      retain: true
+
+
