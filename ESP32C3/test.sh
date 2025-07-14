@@ -1,7 +1,7 @@
 #!/bin/bash
 # Needs a ESP32 DevKit1 plugged in and using PORT as listed
 
-PORT=/dev/ttyUSB0
+PORT=/dev/ttyACM4
 
 if [ "$1" != "" ]
 then
