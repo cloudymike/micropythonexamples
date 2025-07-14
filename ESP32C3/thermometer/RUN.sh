@@ -6,9 +6,9 @@ echo Port used $PORT
 
 PUSHCMD="ampy --port $PORT put "
 
-#$PUSHCMD ../oled/ssd1306.py
-#$PUSHCMD ../bignumber/bignumber.py
-#$PUSHCMD ../tempreader/tempreader.py
+$PUSHCMD ../oled/ssd1306.py
+$PUSHCMD ../bignumber/bignumber.py
+$PUSHCMD ../tempreader/tempreader.py
 $PUSHCMD main.py
 
 echo "Resetting board"
