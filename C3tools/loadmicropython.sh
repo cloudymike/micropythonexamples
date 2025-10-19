@@ -2,12 +2,14 @@
 
 PACKAGE=ESP32_GENERIC_C3-20250415-v1.25.0.bin
 
-if [ -n "$PORTNUMBER" ] 
-then
-	PORT="/dev/ttyACM${PORTNUMBER}"
-else
-	PORT='/dev/ttyACM0'
-fi
+PORT=$(ls /dev/ | grep -e ACM)
+
+#if [ -n "$PORTNUMBER" ] 
+#then
+#	PORT="/dev/ttyACM${PORTNUMBER}"
+#else
+#	PORT='/dev/ttyACM0'
+#fi
 echo Port used $PORT
 
 
