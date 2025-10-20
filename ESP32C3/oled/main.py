@@ -11,7 +11,7 @@ import gfx
 
 
 # ESP32C3 Pin assignment
-i2c = I2C(-1, scl=Pin(7), sda=Pin(6))
+i2c = I2C(-1, scl=Pin(9), sda=Pin(8))
 
 # ESP32 Pin assignment
 #i2c = I2C(-1, scl=Pin(22), sda=Pin(21))
