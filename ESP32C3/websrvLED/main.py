@@ -4,7 +4,7 @@ import wlan
 import LED
 
 def web_page():
-  if LED.LED.value() == 1:
+  if LED.LED.value() == 0:
     gpio_state="ON"
   else:
     gpio_state="OFF"
@@ -14,7 +14,7 @@ def web_page():
   h1{color: #0F3376; padding: 2vh;}p{font-size: 1.5rem;}.button{display: inline-block; background-color: #e7bd3b; border: none;
   border-radius: 4px; color: white; padding: 16px 40px; text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}
   .button2{background-color: #4286f4;}</style></head><body> <h1>ESP Web Server</h1>
-  <p>LED pin 10: <strong>""" + gpio_state + """</strong></p><p><a href="/?led=on"><button class="button">ON</button></a></p>
+  <p>LED pin 8: <strong>""" + gpio_state + """</strong></p><p><a href="/?led=on"><button class="button">ON</button></a></p>
   <p><a href="/?led=off"><button class="button button2">OFF</button></a></p></body></html>"""
   return html
 
@@ -38,10 +38,10 @@ while True:
   led_off = request.find('/?led=off')
   if led_on == 6:
     print('LED ON')
-    LED.LED.value(1)
+    LED.LED.value(0)
   if led_off == 6:
     print('LED OFF')
-    LED.LED.value(0)
+    LED.LED.value(1)
   response = web_page()
   conn.send('HTTP/1.1 200 OK\n')
   conn.send('Content-Type: text/html\n')

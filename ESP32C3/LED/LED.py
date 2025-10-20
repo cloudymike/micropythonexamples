@@ -1,3 +1,3 @@
 import machine
 
-LED = machine.Pin(10, machine.Pin.OUT)
+LED = machine.Pin(8, machine.Pin.OUT)
