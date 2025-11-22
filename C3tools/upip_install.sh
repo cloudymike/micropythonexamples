@@ -5,7 +5,15 @@
 WLAN_CONFIG_PATH=~/secrets/wlanconfig.py
 
 # Create command aliasPORT='/dev/ttyUSB0'
-PORT='/dev/ttyUSB0'
+USBPORT=$(ls /dev/ | grep -e ACM)
+if [ "$USBPORT" = "" ]
+then
+USBPORT=$(ls /dev/ | grep -e USB)
+fi
+
+PORT=/dev/$USBPORT
+echo Port used $PORT
+
 PUSHCMD="ampy --port $PORT put "
 CURDIR=$(pwd)
 TOPDIR=${CURDIR%/*}
