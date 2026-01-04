@@ -1,10 +1,14 @@
 #!/bin/bash
 
-USBPORT=$(ls /dev/ | grep -e USB -e ACM)
+USBPORT=$(ls /dev/ | grep -e ACM)
+if [ "$USBPORT" = "" ]
+then
+USBPORT=$(ls /dev/ | grep -e USB)
+fi
 PORT=/dev/$USBPORT
 echo Port used $PORT
 
-PUSHCMD="ampy --port $PORT put "
+
 CURDIR=$(pwd)
 TOPDIR=${CURDIR%/*}
 
