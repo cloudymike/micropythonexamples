@@ -1,10 +1,17 @@
 #!/bin/bash
-PORT='/dev/ttyUSB0'
+USBPORT=$(ls /dev/ | grep -e ACM)
+if [ "$USBPORT" = "" ]
+then
+USBPORT=$(ls /dev/ | grep -e USB)
+fi
+PORT=/dev/$USBPORT
+echo Port used $PORT
+
 PUSHCMD="ampy --port $PORT put "
 
-COMMAND_TOPIC="home/diy/blueled/set"
-STATE_TOPIC="home/diy/blueled"
-AVAILABILITY_TOPIC="home/diy/blueled/available"
+COMMAND_TOPIC="homeassistant/diy/blueled/set"
+STATE_TOPIC="homeassistant/diy/blueled"
+AVAILABILITY_TOPIC="homeassistant/diy/blueled/available"
 
 
 # Enter your path to your WLAN configuration file here, see ../wlan/wlanconfig.py for example
@@ -41,8 +48,10 @@ while true ; do
         break
     else # No input
         mosquitto_pub -t $COMMAND_TOPIC -q 0 -m on
+        echo on
         sleep 1
         mosquitto_pub -t $COMMAND_TOPIC -q 0 -m off
+        echo off
         sleep 1
     fi
 done

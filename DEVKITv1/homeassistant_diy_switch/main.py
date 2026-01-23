@@ -11,10 +11,10 @@ import LED
 import ubinascii
 from umqtt.simple import MQTTClient
 
-
-COMMAND_TOPIC = "home/diy/blueled/set"
-STATE_TOPIC = "home/diy/blueled"
-AVAILABILITY_TOPIC = "home/diy/blueled/available"
+TOPIC_PREFIX="homeassistant"
+COMMAND_TOPIC = "{}/diy/blueled/set".format(TOPIC_PREFIX)
+STATE_TOPIC = "{}/diy/blueled".format(TOPIC_PREFIX)
+AVAILABILITY_TOPIC = "{}/diy/blueled/available".format(TOPIC_PREFIX)
 
 CLIENT = None
 #CLIENT_ID = ubinascii.hexlify(machine.unique_id())
@@ -23,7 +23,7 @@ print("CLIENT_ID: {}".format(CLIENT_ID))
 
 gc.collect()
 
-wlan.do_connect()
+wlan.do_connect(CLIENT_ID)
 
 def new_msg(topic, msg):
 
