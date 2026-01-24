@@ -1,4 +1,4 @@
-#!/bin/bas
+#!/bin/bash
 
 
 USBPORT=$(ls /dev/ | grep -e ACM)
